@@ -13,9 +13,6 @@ public class Referee {
     @Column(name = "name", nullable = false, length = 70)
     private String name;
 
-    @Column(name = "password", nullable = false, length = 70)
-    private String password;
-
     @Column(name = "special", nullable = false, length = 70)
     private String special;
 
@@ -33,9 +30,8 @@ public class Referee {
 
     }
 
-    public Referee(String name, String password, String special, String league, byte[] photo) {
+    public Referee(String name, String special, String league, byte[] photo) {
         this.name = name;
-        this.password = password;
         this.special = special;
         this.league = league;
         this.photo = photo;
@@ -58,14 +54,6 @@ public class Referee {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getSpecial() {
