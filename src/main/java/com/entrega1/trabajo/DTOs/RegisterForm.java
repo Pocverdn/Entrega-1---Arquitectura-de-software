@@ -1,6 +1,6 @@
 package com.entrega1.trabajo.DTOs;
 
-public class RegistroForm {
+public class RegisterForm {
     
     private String username;
     private String password;

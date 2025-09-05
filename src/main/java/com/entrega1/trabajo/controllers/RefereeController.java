@@ -19,7 +19,7 @@ public class RefereeController {
     }
 
     @GetMapping("/form")
-    public String form(Model model){
+    public String refereeForm(Model model){
         model.addAttribute("referee", new Referee());
         return "referees/form";
     }
@@ -42,13 +42,13 @@ public class RefereeController {
         
 
     @GetMapping("/index")
-    public String index(Model model){
+    public String refereeIndex(Model model){
         model.addAttribute("referees", refereeService.getAllReferees());
         return "referees/index";
     }
 
     @GetMapping("/{id}")
-    public String show(@PathVariable int id, Model model){
+    public String refereeShow(@PathVariable int id, Model model){
         Referee referee = refereeService.getRefereeById(id).orElseThrow(() -> new IllegalArgumentException("Invalid referee Id: " + id));
         model.addAttribute("referee", referee);
         return "referees/show";
