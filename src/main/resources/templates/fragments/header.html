@@ -7,6 +7,20 @@
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/referees}">Árbitros</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/tournaments}">Torneos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/liquidations}">Liquidaciones</a>
+                </li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -15,3 +29,4 @@
         <h2 th:text="${subtitle} ?: 'Entrega 1 -- Estructura de Software'"></h2>
     </div>
 </header>
+</th:block>

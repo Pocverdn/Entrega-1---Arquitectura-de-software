@@ -1,0 +1,14 @@
+<h1>Crear Liquidación</h1>
+<form th:action="@{/liquidations}" method="post" th:object="${liquidation}">
+  <label>Árbitro</label>
+  <select th:field="*{referee}">
+    <option th:each="r : ${referees}" th:value="${r}" th:text="${r.name}"></option>
+  </select>
+  <label>Periodo inicio</label>
+  <input type="date" th:field="*{periodStart}"/>
+  <label>Periodo fin</label>
+  <input type="date" th:field="*{periodEnd}"/>
+  <label>Monto total</label>
+  <input type="number" th:field="*{totalAmount}"/>
+  <button type="submit">Guardar</button>
+</form>

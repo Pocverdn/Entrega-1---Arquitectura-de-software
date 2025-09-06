@@ -1,0 +1,8 @@
+<h1>Crear Torneo</h1>
+<form th:action="@{/tournaments}" method="post" th:object="${tournament}">
+  <input type="text" th:field="*{name}" placeholder="Nombre"/>
+  <input type="text" th:field="*{location}" placeholder="Lugar"/>
+  <input type="date" th:field="*{startDate}"/>
+  <input type="date" th:field="*{endDate}"/>
+  <button type="submit">Guardar</button>
+</form>

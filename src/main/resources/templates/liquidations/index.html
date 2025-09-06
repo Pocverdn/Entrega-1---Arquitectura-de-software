@@ -1,0 +1,10 @@
+<h1>Lista de Liquidaciones</h1>
+<ul th:each="l : ${liquidations}">
+  <li>
+    <a th:href="@{|/liquidations/${l.id}|}">
+      <span th:text="${l.referee.name}"></span> - $
+      <span th:text="${l.totalAmount}"></span>
+    </a>
+  </li>
+</ul>
+<a th:href="@{/liquidations/form}">Nueva Liquidación</a>

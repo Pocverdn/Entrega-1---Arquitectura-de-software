@@ -1,0 +1,5 @@
+<h1 th:text="${tournament.name}"></h1>
+<p>Lugar: <span th:text="${tournament.location}"></span></p>
+<p>Inicio: <span th:text="${tournament.startDate}"></span></p>
+<p>Fin: <span th:text="${tournament.endDate}"></span></p>
+<a th:href="@{/tournaments}">Volver</a>

@@ -1,0 +1,5 @@
+<h1>Detalle de Liquidación</h1>
+<p>Árbitro: <span th:text="${liquidation.referee.name}"></span></p>
+<p>Periodo: <span th:text="${liquidation.periodStart}"></span> - <span th:text="${liquidation.periodEnd}"></span></p>
+<p>Monto: <span th:text="${liquidation.totalAmount}"></span></p>
+<a th:href="@{/liquidations}">Volver</a>

@@ -1,0 +1,5 @@
+<h1>Lista de Torneos</h1>
+<ul th:each="t : ${tournaments}">
+  <li><a th:href="@{|/tournaments/${t.id}|}" th:text="${t.name}"></a></li>
+</ul>
+<a th:href="@{/tournaments/form}">Nuevo Torneo</a>
