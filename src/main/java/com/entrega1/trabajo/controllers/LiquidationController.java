@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class LiquidationController {
 
     private final LiquidationService liquidationService;
-    private final RefereeRepository refereeRepository; // 👈 cambio aquí
+    private final RefereeRepository refereeRepository;
 
     public LiquidationController(LiquidationService liquidationService, RefereeRepository refereeRepository) {
         this.liquidationService = liquidationService;
@@ -28,7 +28,7 @@ public class LiquidationController {
     @GetMapping("/form")
     public String form(Model model) {
         model.addAttribute("liquidation", new Liquidation());
-        model.addAttribute("referees", refereeRepository.findAll()); // 👈 ahora sí funciona
+        model.addAttribute("referees", refereeRepository.findAll()); 
         return "liquidations/form";
     }
 
