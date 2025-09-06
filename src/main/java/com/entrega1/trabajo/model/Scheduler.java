@@ -10,6 +10,10 @@ import java.util.*;
 @Table(name = "Scheduler")
 public class Scheduler {
 
+        @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
    @OneToMany(mappedBy = "Shceduler", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Tournament> torneos= new ArrayList<>();
 

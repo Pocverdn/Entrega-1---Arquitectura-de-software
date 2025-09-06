@@ -1,7 +1,7 @@
 package com.entrega1.trabajo.model; //Recuerden cambiar esto
 
 import jakarta.persistence.*;
-import java.util.ArrayList;
+
 import java.util.*;
 //import jakarta.validation.constraints.*;
 
@@ -9,6 +9,10 @@ import java.util.*;
 @Entity
 @Table(name = "Juego")
 public class Juego {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
     //@NotBlank(message = "El nombre es obligatorio")
     //@Size(min = 2, max = 100, message = "El nombre debe tener entre 2 y 100 caracteres")
