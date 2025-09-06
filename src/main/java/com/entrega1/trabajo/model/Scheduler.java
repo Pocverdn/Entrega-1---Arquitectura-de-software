@@ -7,14 +7,14 @@ import java.util.*;
 
 
 @Entity
-@Table(name = "Scheduler")
+@Table(name = "scheduler")
 public class Scheduler {
 
         @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-   @OneToMany(mappedBy = "Shceduler", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   @OneToMany(mappedBy = "shceduler", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Tournament> torneos= new ArrayList<>();
 
 
