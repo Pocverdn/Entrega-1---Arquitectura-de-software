@@ -14,13 +14,28 @@
 <body>
     <div th:replace="~{fragments/header :: header}"></div>
 
-    <div class="container my-4">
-        <h2>CRUD Referee</h2>
-        <div class="d-grid gap-2">
-            <a class="btn btn-primary" th:href="@{/referees/form}">Formulario</a>
-            <a class="btn btn-primary" th:href="@{/referees/index}">Lista</a>
-           
+    <div sec:authorize="hasRole('ADMIN')">
+        <div class="container my-4">
+            <h2>CRUD Referees</h2>
+            <div class="d-grid gap-2">
+                <a class="btn btn-primary" th:href="@{/referees/form}">Formulario</a>
+                <a class="btn btn-primary" th:href="@{/referees/index}">Lista</a>
+            </div>
+        </div>
+
+        <div class="container my-4">
+            <h2>CRUD tournaments</h2>
+            <div class="d-grid gap-2">
+                <a class="btn btn-primary" th:href="@{/tournaments/form}">Formulario</a>
+                <a class="btn btn-primary" th:href="@{/tournaments/index}">Lista</a>
+            </div>
         </div>
     </div>
+
+    <div sec:authorize="hasRole('USER')">
+        <p>Bienvenido, usuario normal.</p>
+    </div>
+
+    
 </body>
 </html>

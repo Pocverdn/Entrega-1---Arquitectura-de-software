@@ -16,7 +16,7 @@ public class TournamentController {
         this.tournamentService = tournamentService;
     }
 
-    @GetMapping
+    @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("tournaments", tournamentService.findAll());
         return "tournaments/index";
@@ -41,9 +41,10 @@ public class TournamentController {
         return "tournaments/show";
     }
 
-    @GetMapping("/{id}/delete")
-    public String delete(@PathVariable Integer id) {
+    @PostMapping("/{id}/delete")
+    public String delete(@PathVariable Integer id, Model model) {
         tournamentService.deleteById(id);
-        return "redirect:/tournaments";
+        model.addAttribute("tournaments", tournamentService.findAll());
+        return "tournaments/index";
     }
 }
