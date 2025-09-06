@@ -7,7 +7,7 @@ import java.util.*;
 
 
 @Entity
-@Table(name = "Juego")
+@Table(name = "juego")
 public class Juego {
 
     @Id
