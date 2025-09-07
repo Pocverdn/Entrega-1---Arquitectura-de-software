@@ -1,29 +1,28 @@
 package com.entrega1.trabajo.service;
 
-import com.entrega1.trabajo.model.Juego;
-import com.entrega1.trabajo.model.Tournament;
-import com.entrega1.trabajo.repository.JuegoRepository;
+import com.entrega1.trabajo.model.Game;
+import com.entrega1.trabajo.repository.GameRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class JuegoService {
-    private final JuegoRepository juegoRepository;
+public class GameService {
+    private final GameRepository juegoRepository;
 
-    public JuegoService(JuegoRepository juegoRepository) {
+    public GameService(GameRepository juegoRepository) {
         this.juegoRepository = juegoRepository;
     }
 
-    public List<Juego> findAll() {
+    public List<Game> findAll() {
         return juegoRepository.findAll();
     }
 
-    public Optional<Juego> findById(Integer id) {
+    public Optional<Game> findById(Integer id) {
         return juegoRepository.findById(id);
     }
 
-    public Juego save(Juego juego) {
+    public Game save(Game juego) {
         return juegoRepository.save(juego);
     }
 

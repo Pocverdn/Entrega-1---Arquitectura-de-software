@@ -9,10 +9,8 @@ import com.entrega1.trabajo.service.TournamentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.security.core.session.SessionRegistry;
-import org.springframework.security.core.session.SessionInformation;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 @Controller
 @RequestMapping("/dashboard")
