@@ -1,2 +1,26 @@
-<h1>Liquidación guardada exitosamente</h1>
-<a th:href="@{/liquidations}">Volver a la lista</a>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <title th:text="${title} ?: 'Liquidación guardada'"></title>
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="container mt-5">
+        <div class="alert alert-success shadow-lg rounded-3">
+            <h4 th:text="${message} ?: 'Liquidación creada exitosamente!'">Liquidación creada</h4>
+            <a th:href="@{/liquidations/form}" class="btn btn-primary mt-3">Crear otra</a>
+            <a th:href="@{/liquidations}" class="btn btn-secondary mt-3">Volver a la lista</a>
+        </div>
+    </div>
+
+</body>
+</html>

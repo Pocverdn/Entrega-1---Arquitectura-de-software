@@ -25,12 +25,26 @@ public class RefereeService {
         return refereeRepository.findAll();
     }
 
+   
+    public List<Referee> findAll() {
+        return refereeRepository.findAll();
+    }
+
     public Optional<Referee> getRefereeById(int id) {
+        return refereeRepository.findById(id);
+    }
+
+    
+    public Optional<Referee> findById(Integer id) {
         return refereeRepository.findById(id);
     }
 
     public void deleteRefereeById(int id) {
         refereeRepository.deleteById(id);
     }
+
     
+    public void deleteById(Integer id) {
+        refereeRepository.deleteById(id);
+    }
 }

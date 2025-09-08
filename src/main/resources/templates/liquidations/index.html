@@ -1,10 +1,49 @@
-<h1>Lista de Liquidaciones</h1>
-<ul th:each="l : ${liquidations}">
-  <li>
-    <a th:href="@{|/liquidations/${l.id}|}">
-      <span th:text="${l.referee.name}"></span> - $
-      <span th:text="${l.totalAmount}"></span>
-    </a>
-  </li>
-</ul>
-<a th:href="@{/liquidations/form}">Nueva Liquidación</a>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+    <title th:text="${title} ?: 'Lista de Liquidaciones'"></title>
+</head>
+<body>
+    <div th:replace="~{fragments/header :: header}"></div>
+
+    <div class="container my-4">
+        <h2 class="text-center" th:text="${subtitle} ?: 'Liquidaciones'"></h2>
+        <div class="row">
+            <!-- Usamos la misma estructura de tarjetas que Referee -->
+            <div class="col-md-4 col-lg-3 mb-3" th:each="l : ${liquidations}">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body text-center">
+                        <!-- Mostrar foto del árbitro si existe -->
+                        <img th:if="${l.referee.photoAsBase64 != null}"
+                             th:src="'data:image/jpeg;base64,' + ${l.referee.photoAsBase64}"
+                             alt="Foto árbitro"
+                             class="img-fluid rounded-circle mb-3"
+                             style="width: 120px; height: 120px; object-fit: cover;" />
+                        <h5 th:text="${l.referee.name}">Nombre Árbitro</h5>
+                        <p class="mb-1"><small>Periodo:</small></p>
+                        <p class="mb-2"><small th:text="${l.periodStart} + ' - ' + ${l.periodEnd}"></small></p>
+                        <p class="mb-2"><strong>$<span th:text="${l.totalAmount}">0.00</span></strong></p>
+
+                        <a class="btn btn-primary btn-sm" th:href="@{/liquidations/{id}(id=${l.id})}">Ver</a>
+                        <a class="btn btn-danger btn-sm" th:href="@{/liquidations/{id}/delete(id=${l.id})}">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Si no hay liquidaciones, mostrar mensaje -->
+            <div th:if="${#lists.isEmpty(liquidations)}" class="col-12">
+                <div class="alert alert-info">No hay liquidaciones registradas.</div>
+                <a th:href="@{/liquidations/form}" class="btn btn-primary">Crear primera liquidación</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
