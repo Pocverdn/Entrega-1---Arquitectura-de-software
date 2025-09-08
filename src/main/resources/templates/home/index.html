@@ -48,9 +48,22 @@
         </div>
     </div>
 
-    <div sec:authorize="hasRole('USER')">
-        <p>Bienvenido, usuario normal.</p>
+    <div class="container mt-4" sec:authorize="hasRole('USER')">
+        <div class="d-flex flex-column align-items-center p-3 border rounded shadow-sm">
+
+            <img th:if="${user.photoAsBase64 != null}"
+                th:src="'data:image/jpeg;base64,' + ${user.photoAsBase64}"
+                alt="User photo"
+                class="img-fluid rounded-circle mb-3"
+                style="width: 150px; height: 150px; object-fit: cover;" />
+
+            <h3 class="mb-1" th:text="${user.name}"></h3>
+            <h5 class="text-muted mb-1" th:text="${user.league}"></h5>
+            <h6 class="text-secondary" th:text="${user.special}"></h6>
+
+        </div>
     </div>
+
 
     
 </body>

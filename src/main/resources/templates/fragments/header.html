@@ -10,7 +10,7 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto">
                 <a class="nav-link active" th:href="@{/logout}">Log out</a>
-                <a class="nav-link active" th:href="@{/}">Perfil</a>
+                <a class="nav-link active" th:href="@{/}">Profile</a>
                 <div sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link active" th:href="@{/dashboard/index}">Tabla de administración</a>
                 </div>

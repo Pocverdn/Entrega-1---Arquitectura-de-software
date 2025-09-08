@@ -1,7 +1,5 @@
 package com.entrega1.trabajo.controllers;
 
-import com.entrega1.trabajo.service.RefereeService;
-
 import com.entrega1.trabajo.service.TournamentService;
 
 import com.entrega1.trabajo.service.GameService;

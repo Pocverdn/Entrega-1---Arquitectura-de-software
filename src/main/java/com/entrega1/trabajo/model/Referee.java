@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.util.Base64;
+
 @Entity
 @Table(name = "referee")
 public class Referee {
@@ -93,6 +95,10 @@ public class Referee {
 
     public List<Game> getGames() {
         return games;
+    }
+
+    public String getPhotoAsBase64() {
+        return this.photo != null ? Base64.getEncoder().encodeToString(this.photo) : null;
     }
 
 
