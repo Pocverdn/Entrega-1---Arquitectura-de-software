@@ -1,10 +1,10 @@
 package com.entrega1.trabajo.controllers;
 
-import com.entrega1.trabajo.model.Referee;
 import com.entrega1.trabajo.service.RefereeService;
 
-import com.entrega1.trabajo.model.Tournament;
 import com.entrega1.trabajo.service.TournamentService;
+
+import com.entrega1.trabajo.service.GameService;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +17,12 @@ import org.springframework.security.core.session.SessionRegistry;
 public class dashboardController {
 
     private final TournamentService tournamentService;
-    private final RefereeService refereeService;
+    private final GameService gameService;
     private final SessionRegistry sessionRegistry;
 
-    public dashboardController(TournamentService tournamentService, RefereeService refereeService , SessionRegistry sessionRegistry) {
+    public dashboardController(TournamentService tournamentService, GameService gameService , SessionRegistry sessionRegistry) {
         this.tournamentService = tournamentService;
-        this.refereeService = refereeService;
+        this.gameService = gameService;
         this.sessionRegistry = sessionRegistry;
     }
 
@@ -46,7 +46,8 @@ public class dashboardController {
 
         model.addAttribute("activeUsers", activeUsers);
         model.addAttribute("onlineUsers", onlineUsers);
-        model.addAttribute("tournaments", tournamentService.findAll());
+        model.addAttribute("tournaments", tournamentService.activeTournaments());
+        model.addAttribute("games", gameService.gameFuture());
 
         return "dashboard/index";
     }

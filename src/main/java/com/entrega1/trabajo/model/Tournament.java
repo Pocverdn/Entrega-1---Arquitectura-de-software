@@ -29,6 +29,15 @@ public class Tournament {
     @Column(name = "end_date")
     private LocalDate endDate;
 
+    @OneToMany(mappedBy = "tournament", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Game> games = new ArrayList<>();
+
+
+    public void addGame(Game game){
+        games.add(game);
+        game.setTournament(this);
+    }
+
     // Example relationship placeholder: if matches/events are implemented later,
     // they can reference Tournament with a ManyToOne. For now keep simple.
     public Tournament() {}
@@ -78,6 +87,10 @@ public class Tournament {
 
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
+    }
+
+    public List<Game> getGames() {
+        return games;
     }
 
     @Override

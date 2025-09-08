@@ -16,16 +16,23 @@
     <div th:replace="~{fragments/header :: header}"></div>
 
     <div class="container mt-4">
-        <h2>Usuarios Enlinea</h2>
+        <h2>User Online</h2>
         <ul class="list-group">
             <li class="list-group-item" th:each="user : ${onlineUsers}" th:text="${user}"></li>
         </ul>
     </div>
 
     <div class="container mt-4">
-        <h2>Torneos Activos</h2>
+        <h2>Active Tournaments</h2>
         <ul class="list-group">
             <li class="list-group-item" th:each="tournament : ${tournaments}" th:text="${tournament.name}"></li>
+        </ul>
+    </div>
+
+    <div class="container mt-4">
+        <h2>Future Games</h2>
+        <ul class="list-group">
+            <li class="list-group-item" th:each="game : ${games}" th:text="${game.name}"></li>
         </ul>
     </div>
 

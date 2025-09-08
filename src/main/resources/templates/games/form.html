@@ -42,6 +42,23 @@
                         <input type="date" th:field="*{dateStart}" class="form-control" required>
                     </div>
 
+                    <div class="mb-3">
+                        <label class="form-label">Referee</label>
+                        <select th:field="*{referee}" class="form-control">
+                            <option th:each="referee : ${referees}" th:value="${referee.id}" th:text="${referee.name}"></option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Tournament</label>
+                        <select th:field="*{tournament}" class="form-control">
+                            <option th:each="tournament : ${tournaments}" th:value="${tournament.id}" th:text="${tournament.name}"></option>
+                        </select>
+                    </div>
+
+                        
+
+
                     <button type="submit" class="btn btn-success">Save Referee</button>
                 </form>
             </div>

@@ -21,11 +21,23 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${referee.name}"></h5>
-                        <p class="card-text" th:text="${referee.league}"></p>
-                        <p class="card-text" th:text="${referee.special}"></p>
+                        <p class="card-text mb-1">
+                            <strong>League:</strong> <span th:text="${referee.league}"></span>
+                        </p>
+                        <p class="card-text mb-3">
+                            <strong>Specialty:</strong> <span th:text="${referee.special}"></span>
+                        </p>
 
-                        <form th:action="@{/referees/{id}/delete(id=${referee.id})}" method="post" 
-                            style="display:inline;">
+                        <h6 class="mt-3">Games assigned:</h6>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li th:each="game : ${referee.games}"
+                                th:text="${game.name}"
+                                class="list-group-item">
+                            </li>
+                        </ul>
+
+                        <form th:action="@{/referees/{id}/delete(id=${referee.id})}" 
+                            method="post" style="display:inline;">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </div>

@@ -19,7 +19,7 @@ public class LiquidationController {
         this.refereeRepository = refereeRepository;
     }
 
-    @GetMapping
+    @GetMapping("/index")
     public String index(Model model) {
         model.addAttribute("liquidations", liquidationService.findAll());
         return "liquidations/index";

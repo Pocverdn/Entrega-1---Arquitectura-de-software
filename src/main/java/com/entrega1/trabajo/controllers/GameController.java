@@ -2,6 +2,8 @@ package com.entrega1.trabajo.controllers;
 
 import com.entrega1.trabajo.model.Game;
 import com.entrega1.trabajo.service.GameService;
+import com.entrega1.trabajo.repository.RefereeRepository;
+import com.entrega1.trabajo.repository.TournamentRepository;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +13,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/games")
 public class GameController {
     private final GameService juegoService;
+    private final RefereeRepository refereeRepository;
+    private final TournamentRepository tournamentRepository;
 
-    public GameController (GameService juegoService) {
+    public GameController (GameService juegoService, RefereeRepository refereeRepository, TournamentRepository tournamentRepository) {
         this.juegoService = juegoService;
-
+        this.refereeRepository = refereeRepository;
+        this.tournamentRepository = tournamentRepository;
     }
     
    @GetMapping("/index")
@@ -33,6 +38,8 @@ public class GameController {
     @GetMapping("/form")
     public String form(Model model) {
         model.addAttribute("game", new Game());
+        model.addAttribute("referees", refereeRepository.findAll()); 
+        model.addAttribute("tournaments", tournamentRepository.findAll()); 
         return "games/form";
     }
 

@@ -38,6 +38,14 @@
                 <a class="btn btn-primary" th:href="@{/games/index}">Lista</a>
             </div>
         </div>
+
+        <div class="container my-4">
+            <h2>CRUD Liquidation</h2>
+            <div class="d-grid gap-2">
+                <a class="btn btn-primary" th:href="@{/liquidations/form}">Formulario</a>
+                <a class="btn btn-primary" th:href="@{/liquidations/index}">Lista</a>
+            </div>
+        </div>
     </div>
 
     <div sec:authorize="hasRole('USER')">

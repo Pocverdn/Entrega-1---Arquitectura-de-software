@@ -3,24 +3,31 @@ package com.entrega1.trabajo.controllers;
 import com.entrega1.trabajo.model.Referee;
 import com.entrega1.trabajo.service.RefereeService;
 
+import com.entrega1.trabajo.service.GameService;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+
 
 @Controller
 @RequestMapping("/referees")
 public class RefereeController {
 
     private final RefereeService refereeService;
+    private final GameService gameService;
     
-    public RefereeController(RefereeService refereeService) {
+    public RefereeController(RefereeService refereeService, GameService gameService) {
         this.refereeService = refereeService;
+        this.gameService = gameService;
     }
 
     @GetMapping("/form")
     public String refereeForm(Model model){
         model.addAttribute("referee", new Referee());
+        model.addAttribute("games", gameService.findAll());
         return "referees/form";
     }
 

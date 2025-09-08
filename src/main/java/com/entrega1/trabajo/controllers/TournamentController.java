@@ -2,6 +2,7 @@ package com.entrega1.trabajo.controllers;
 
 import com.entrega1.trabajo.model.Tournament;
 import com.entrega1.trabajo.service.TournamentService;
+import com.entrega1.trabajo.service.GameService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.*;
 public class TournamentController {
 
     private final TournamentService tournamentService;
+    private final GameService gameService;
 
-    public TournamentController(TournamentService tournamentService) {
+    public TournamentController(TournamentService tournamentService, GameService gameService) {
         this.tournamentService = tournamentService;
+        this.gameService = gameService;
     }
 
     @GetMapping("/index")
@@ -25,6 +28,7 @@ public class TournamentController {
     @GetMapping("/form")
     public String form(Model model) {
         model.addAttribute("tournament", new Tournament());
+        model.addAttribute("games", gameService.findAll());
         return "tournaments/form";
     }
 

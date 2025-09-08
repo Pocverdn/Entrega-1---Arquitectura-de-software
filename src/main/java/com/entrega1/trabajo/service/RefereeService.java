@@ -1,8 +1,10 @@
 package com.entrega1.trabajo.service;
 
 import com.entrega1.trabajo.model.Referee;
+import com.entrega1.trabajo.model.Tournament;
 import com.entrega1.trabajo.repository.RefereeRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +34,5 @@ public class RefereeService {
     public void deleteRefereeById(int id) {
         refereeRepository.deleteById(id);
     }
-
     
 }

@@ -1,6 +1,8 @@
 package com.entrega1.trabajo.model;
 
 import jakarta.persistence.*;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "referee")
@@ -22,6 +24,15 @@ public class Referee {
     @Lob
     @Column(name = "photo", columnDefinition = "LONGBLOB")
     private byte[] photo;
+
+    @OneToMany(mappedBy = "referee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Game> games = new ArrayList<>();
+
+
+    public void addGame(Game game){
+        games.add(game);
+        game.setReferee(this);
+    }
 
 
     //---------------------Constructor---------------------
@@ -80,6 +91,9 @@ public class Referee {
         this.photo = photo;
     }
 
+    public List<Game> getGames() {
+        return games;
+    }
 
 
 }

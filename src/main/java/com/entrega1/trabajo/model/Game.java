@@ -33,6 +33,30 @@ public class Game {
    @Column(name = "dateStart", nullable = false)
    private LocalDate dateStart;
 
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "referee_id", nullable = false)
+   private Referee referee;
+
+   @ManyToOne(fetch = FetchType.LAZY)
+   @JoinColumn(name = "tournament_id", nullable = false)
+   private Tournament tournament;
+
+
+   public void setReferee(Referee referee) {
+      this.referee = referee;
+   }
+
+   public Referee getReferee() {
+      return referee;
+   }
+
+   public void setTournament(Tournament tournament) {
+      this.tournament = tournament;
+   }
+
+   public Tournament getTournament() {
+      return tournament;
+   }
 
    public Integer getId() {
       return id;

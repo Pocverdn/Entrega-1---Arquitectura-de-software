@@ -20,13 +20,23 @@
             <div class="row g-0">
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${game.name}"></h5>
-                        <p class="card-text" th:text="${game.dateStart}"></p>
-                        <p class="card-text" th:text="${game.rules}"></p>
-                        <p class="card-text" th:text="${game.teams}"></p>
+                        <h5 class="card-title mb-3" th:text="${game.name}"></h5>
+    
+                        <p class="card-text mb-1">
+                            <strong>Start Date:</strong>
+                            <span th:text="${game.dateStart}"></span>
+                        </p>
+                        <p class="card-text mb-1">
+                            <strong>Rules:</strong>
+                            <span th:text="${game.rules}"></span>
+                        </p>
+                        <p class="card-text mb-3">
+                            <strong>Teams:</strong>
+                            <span th:text="${game.teams}"></span>
+                        </p>
 
-                        <form th:action="@{/games/{id}/delete(id=${game.id})}" method="post" 
-                            style="display:inline;">
+                        <form th:action="@{/games/{id}/delete(id=${game.id})}" 
+                            method="post" style="display:inline;">
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </div>
