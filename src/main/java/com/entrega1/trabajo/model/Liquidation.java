@@ -3,10 +3,7 @@ package com.entrega1.trabajo.model;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
-/**
- * Liquidation entity representing a payment summary for a referee over a period.
- * It keeps a reference to the referee, the period (month/year) and the total amount.
- */
+
 @Entity
 @Table(name = "liquidation")
 public class Liquidation {
@@ -15,12 +12,12 @@ public class Liquidation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    // Reference to referee (many liquidations can belong to one referee)
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "referee_id", nullable = false)
     private Referee referee;
 
-    // Period that this liquidation covers (we'll store the first day of the period)
+    
     @Column(name = "period_start", nullable = false)
     private LocalDate periodStart;
 
@@ -30,7 +27,7 @@ public class Liquidation {
     @Column(name = "total_amount", nullable = false)
     private Double totalAmount;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDate createdAt;
 
     public Liquidation() {}
@@ -40,9 +37,14 @@ public class Liquidation {
         this.periodStart = periodStart;
         this.periodEnd = periodEnd;
         this.totalAmount = totalAmount;
+    }
+
+    @PrePersist
+    protected void onCreate() {
         this.createdAt = LocalDate.now();
     }
 
+    // === Getters y Setters ===
     public Integer getId() {
         return id;
     }
