@@ -24,7 +24,7 @@ public class GameController {
     
    @GetMapping("/index")
     public String index(Model model) {
-       model.addAttribute("games", juegoService.findAll());
+       model.addAttribute("games", juegoService.dateSort());
        return "games/index";
     }   
 
