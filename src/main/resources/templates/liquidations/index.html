@@ -33,7 +33,9 @@
                         <p class="mb-2"><strong>$<span th:text="${l.totalAmount}">0.00</span></strong></p>
 
                         <a class="btn btn-primary btn-sm" th:href="@{/liquidations/{id}(id=${l.id})}">Ver</a>
-                        <a class="btn btn-danger btn-sm" th:href="@{/liquidations/{id}/delete(id=${l.id})}">Eliminar</a>
+                        <form th:action="@{/liquidations/{id}/delete(id=${l.id})}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                        </form>
                     </div>
                 </div>
             </div>
