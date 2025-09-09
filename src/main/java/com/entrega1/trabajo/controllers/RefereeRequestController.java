@@ -18,7 +18,7 @@ public class RefereeRequestController {
         RefereeRequest req = requestRepository.findById(id).orElseThrow();
         req.setStatus("aceptada");
         requestRepository.save(req);
-        return "redirect:/profile"; // Ajusta la ruta según tu vista de perfil
+        return "redirect:/";
     }
 
     @PostMapping("/{id}/reject")
@@ -26,6 +26,6 @@ public class RefereeRequestController {
         RefereeRequest req = requestRepository.findById(id).orElseThrow();
         req.setStatus("rechazada");
         requestRepository.save(req);
-        return "redirect:/profile";
+        return "redirect:/";
     }
 }

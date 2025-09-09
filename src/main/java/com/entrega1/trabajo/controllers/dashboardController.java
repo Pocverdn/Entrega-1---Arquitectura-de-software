@@ -13,6 +13,8 @@ import org.springframework.security.core.session.SessionRegistry;
 @Controller
 @RequestMapping("/dashboard")
 public class dashboardController {
+    @org.springframework.beans.factory.annotation.Autowired
+    private com.entrega1.trabajo.repository.RefereeRequestRepository refereeRequestRepository;
 
     private final TournamentService tournamentService;
     private final GameService gameService;
@@ -42,11 +44,12 @@ public class dashboardController {
             })
             .toList();
 
-        model.addAttribute("activeUsers", activeUsers);
-        model.addAttribute("onlineUsers", onlineUsers);
-        model.addAttribute("tournaments", tournamentService.activeTournaments());
-        model.addAttribute("games", gameService.gameFuture());
+    model.addAttribute("activeUsers", activeUsers);
+    model.addAttribute("onlineUsers", onlineUsers);
+    model.addAttribute("tournaments", tournamentService.activeTournaments());
+    model.addAttribute("games", gameService.gameFuture());
+    model.addAttribute("allRequests", refereeRequestRepository.findAll());
 
-        return "dashboard/index";
+    return "dashboard/index";
     }
 }

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/games")
 public class GameController {
+    @org.springframework.beans.factory.annotation.Autowired
+    private com.entrega1.trabajo.repository.RefereeRequestRepository refereeRequestRepository;
     private final GameService juegoService;
     private final RefereeRepository refereeRepository;
     private final TournamentRepository tournamentRepository;
@@ -47,6 +49,14 @@ public class GameController {
     public String save(@ModelAttribute Game juego) {
 
         juegoService.save(juego);
+        // Crear solicitud de arbitraje si hay árbitro asignado
+        if (juego.getReferee() != null) {
+            com.entrega1.trabajo.model.RefereeRequest req = new com.entrega1.trabajo.model.RefereeRequest();
+            req.setReferee(juego.getReferee());
+            req.setGame(juego);
+            req.setStatus("pendiente");
+            refereeRequestRepository.save(req);
+        }
         return "games/success";
 
     }

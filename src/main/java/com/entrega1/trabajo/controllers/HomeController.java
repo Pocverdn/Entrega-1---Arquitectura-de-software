@@ -14,6 +14,8 @@ import com.entrega1.trabajo.service.RefereeService;
 
 @Controller
 public class HomeController {
+    @Autowired
+    private com.entrega1.trabajo.repository.RefereeRequestRepository refereeRequestRepository;
 
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
@@ -28,8 +30,11 @@ public class HomeController {
 
         if (referee == null && !principal.getName().equals("admin")) {
             return "home/no_count";
-        }else {
+        } else {
             model.addAttribute("user", referee);
+            if (referee != null) {
+                model.addAttribute("refereeRequests", refereeRequestRepository.findByRefereeId(referee.getId()));
+            }
             return "home/index";
         }
         
