@@ -37,14 +37,14 @@
     </div>
 
     <div class="container my-4">
-        <h4>Solicitudes de arbitraje</h4>
+        <h4>Games Request</h4>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Árbitro</th>
-                    <th>Partido</th>
-                    <th>Estado</th>
-                    <th>Fecha</th>
+                    <th>Referee</th>
+                    <th>Games</th>
+                    <th>State</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,9 +52,9 @@
                     <td th:text="${req.referee.name}"></td>
                     <td th:text="${req.game.name}"></td>
                     <td>
-                        <span class="badge bg-warning" th:if="${req.status == 'pendiente'}">Pendiente</span>
-                        <span class="badge bg-success" th:if="${req.status == 'aceptada'}">Aceptada</span>
-                        <span class="badge bg-danger" th:if="${req.status == 'rechazada'}">Rechazada</span>
+                        <span class="badge bg-warning" th:if="${req.status == 'pendiente'}">Pending</span>
+                        <span class="badge bg-success" th:if="${req.status == 'aceptada'}">Accepted</span>
+                        <span class="badge bg-danger" th:if="${req.status == 'rechazada'}">rejected</span>
                     </td>
                     <td th:text="${req.createdAt}"></td>
                 </tr>

@@ -18,32 +18,32 @@
         <div class="container my-4">
             <h2>CRUD Referees</h2>
             <div class="d-grid gap-2">
-                <a class="btn btn-primary" th:href="@{/referees/form}">Formulario</a>
-                <a class="btn btn-primary" th:href="@{/referees/index}">Lista</a>
+                <a class="btn btn-primary" th:href="@{/referees/form}">Form</a>
+                <a class="btn btn-primary" th:href="@{/referees/index}">List</a>
             </div>
         </div>
 
         <div class="container my-4">
             <h2>CRUD tournaments</h2>
             <div class="d-grid gap-2">
-                <a class="btn btn-primary" th:href="@{/tournaments/form}">Formulario</a>
-                <a class="btn btn-primary" th:href="@{/tournaments/index}">Lista</a>
+                <a class="btn btn-primary" th:href="@{/tournaments/form}">Form</a>
+                <a class="btn btn-primary" th:href="@{/tournaments/index}">List</a>
             </div>
         </div>
 
         <div class="container my-4">
             <h2>CRUD games</h2>
             <div class="d-grid gap-2">
-                <a class="btn btn-primary" th:href="@{/games/form}">Formulario</a>
-                <a class="btn btn-primary" th:href="@{/games/index}">Lista</a>
+                <a class="btn btn-primary" th:href="@{/games/form}">Form</a>
+                <a class="btn btn-primary" th:href="@{/games/index}">List</a>
             </div>
         </div>
 
         <div class="container my-4">
             <h2>CRUD Liquidation</h2>
             <div class="d-grid gap-2">
-                <a class="btn btn-primary" th:href="@{/liquidations/form}">Formulario</a>
-                <a class="btn btn-primary" th:href="@{/liquidations/index}">Lista</a>
+                <a class="btn btn-primary" th:href="@{/liquidations/form}">Form</a>
+                <a class="btn btn-primary" th:href="@{/liquidations/index}">List</a>
             </div>
         </div>
     </div>
@@ -64,21 +64,21 @@
         </div>
         <!-- Solicitudes de arbitraje -->
         <div class="container mt-4">
-            <h4>Solicitudes de arbitraje</h4>
+            <h4>Requests for arbitration</h4>
             <div class="row">
                 <div class="col-md-6" th:each="req : ${refereeRequests}">
                     <div class="card mb-2 shadow-sm">
                         <div class="card-body">
-                            <strong th:text="${req.game.name}">Partido</strong>
-                            <span class="badge bg-warning" th:if="${req.status == 'pendiente'}">Pendiente</span>
-                            <span class="badge bg-success" th:if="${req.status == 'aceptada'}">Aceptada</span>
-                            <span class="badge bg-danger" th:if="${req.status == 'rechazada'}">Rechazada</span>
+                            <strong th:text="${req.game.name}">Game</strong>
+                            <span class="badge bg-warning" th:if="${req.status == 'pendiente'}">Pending</span>
+                            <span class="badge bg-success" th:if="${req.status == 'aceptada'}">Accepted</span>
+                            <span class="badge bg-danger" th:if="${req.status == 'rechazada'}">rejected</span>
                             <div th:if="${req.status == 'pendiente'}">
                                 <form th:action="@{/requests/{id}/accept(id=${req.id})}" method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-success btn-sm">Aceptar</button>
+                                    <button type="submit" class="btn btn-success btn-sm">Accept</button>
                                 </form>
                                 <form th:action="@{/requests/{id}/reject(id=${req.id})}" method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-danger btn-sm">Rechazar</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">reject</button>
                                 </form>
                             </div>
                         </div>

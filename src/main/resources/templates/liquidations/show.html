@@ -30,13 +30,6 @@
                         <p class="card-text mb-1"><strong>Monto total:</strong> $<span th:text="${liquidation.totalAmount}"></span></p>
                         <p class="card-text mb-1"><strong>Fecha creación:</strong> <span th:text="${liquidation.createdAt}"></span></p>
 
-                        <!-- Si más adelante quieres listar partidos incluidos en la liquidación:
-                             <h6 class="mt-3">Partidos:</h6>
-                             <ul class="list-group list-group-flush mb-3">
-                                <li th:each="p : ${liquidation.partidos}" class="list-group-item" th:text="${p.name}"></li>
-                             </ul>
-                        -->
-
                         <form th:action="@{/liquidations/{id}/delete(id=${liquidation.id})}" method="post" style="display:inline;">
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
