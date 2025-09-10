@@ -3,6 +3,7 @@ package com.entrega1.trabajo.controllers;
 import com.entrega1.trabajo.model.Liquidation;
 import com.entrega1.trabajo.service.LiquidationService;
 import com.entrega1.trabajo.service.RefereeService;
+import com.entrega1.trabajo.service.GameService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,10 +14,12 @@ public class LiquidationController {
 
     private final LiquidationService liquidationService;
     private final RefereeService refereeService;
+    private final GameService gameService;
 
-    public LiquidationController(LiquidationService liquidationService, RefereeService refereeService) {
+    public LiquidationController(LiquidationService liquidationService, RefereeService refereeService, GameService gameService) {
         this.liquidationService = liquidationService;
         this.refereeService = refereeService;
+        this.gameService = gameService;
     }
 
     
@@ -37,11 +40,14 @@ public class LiquidationController {
     public String form(Model model) {
         model.addAttribute("liquidation", new Liquidation());
         model.addAttribute("referees", refereeService.findAll());
+        model.addAttribute("games", gameService.findAll());
         return "liquidations/form";
     }
 
     @PostMapping
     public String save(@ModelAttribute Liquidation liquidation) {
+        // Calcular el monto según los games seleccionados
+        liquidation.setTotalAmount(liquidation.calculateAmount());
         liquidationService.save(liquidation);
         return "liquidations/success";
     }

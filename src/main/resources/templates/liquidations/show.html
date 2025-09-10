@@ -20,10 +20,10 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${liquidation.referee.name}">Nombre Árbitro</h5>
-                        <p class="card-text mb-1"><strong>Periodo:</strong>
-                            <span th:text="${liquidation.periodStart}"></span> -
-                            <span th:text="${liquidation.periodEnd}"></span>
-                        </p>
+                        <p class="card-text mb-1"><strong>Games incluidos:</strong></p>
+                        <ul class="list-group list-group-flush mb-3">
+                            <li th:each="g : ${liquidation.games}" class="list-group-item" th:text="${g.name}"></li>
+                        </ul>
                         <p class="card-text mb-1"><strong>Monto total:</strong> $<span th:text="${liquidation.totalAmount}"></span></p>
                         <p class="card-text mb-1"><strong>Fecha creación:</strong> <span th:text="${liquidation.createdAt}"></span></p>
 

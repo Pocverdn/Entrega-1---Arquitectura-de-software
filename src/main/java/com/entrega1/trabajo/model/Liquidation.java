@@ -7,6 +7,20 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "liquidation")
 public class Liquidation {
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "liquidation_games",
+        joinColumns = @JoinColumn(name = "liquidation_id"),
+        inverseJoinColumns = @JoinColumn(name = "game_id")
+    )
+    private java.util.List<Game> games = new java.util.ArrayList<>();
+    public java.util.List<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(java.util.List<Game> games) {
+        this.games = games;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,12 +32,6 @@ public class Liquidation {
     private Referee referee;
 
     
-    @Column(name = "period_start", nullable = false)
-    private LocalDate periodStart;
-
-    @Column(name = "period_end", nullable = false)
-    private LocalDate periodEnd;
-
     @Column(name = "total_amount", nullable = false)
     private Double totalAmount;
 
@@ -32,11 +40,13 @@ public class Liquidation {
 
     public Liquidation() {}
 
-    public Liquidation(Referee referee, LocalDate periodStart, LocalDate periodEnd, Double totalAmount) {
+    public Liquidation(Referee referee) {
         this.referee = referee;
-        this.periodStart = periodStart;
-        this.periodEnd = periodEnd;
-        this.totalAmount = totalAmount;
+    }
+
+    public double calculateAmount() {
+        if (games == null) return 0.0;
+        return games.size() * 100000.0;
     }
 
     @PrePersist
@@ -61,21 +71,7 @@ public class Liquidation {
         this.referee = referee;
     }
 
-    public LocalDate getPeriodStart() {
-        return periodStart;
-    }
 
-    public void setPeriodStart(LocalDate periodStart) {
-        this.periodStart = periodStart;
-    }
-
-    public LocalDate getPeriodEnd() {
-        return periodEnd;
-    }
-
-    public void setPeriodEnd(LocalDate periodEnd) {
-        this.periodEnd = periodEnd;
-    }
 
     public Double getTotalAmount() {
         return totalAmount;
@@ -98,8 +94,6 @@ public class Liquidation {
         return "Liquidation{" +
                 "id=" + id +
                 ", refereeId=" + (referee != null ? referee.getId() : null) +
-                ", periodStart=" + periodStart +
-                ", periodEnd=" + periodEnd +
                 ", totalAmount=" + totalAmount +
                 ", createdAt=" + createdAt +
                 '}';

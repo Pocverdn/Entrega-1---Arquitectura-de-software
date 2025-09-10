@@ -28,9 +28,7 @@
                              class="img-fluid rounded-circle mb-3"
                              style="width: 120px; height: 120px; object-fit: cover;" />
                         <h5 th:text="${l.referee.name}">Nombre Árbitro</h5>
-                        <p class="mb-1"><small>Periodo:</small></p>
-                        <p class="mb-2"><small th:text="${l.periodStart} + ' - ' + ${l.periodEnd}"></small></p>
-                        <p class="mb-2"><strong>$<span th:text="${l.totalAmount}">0.00</span></strong></p>
+                        <p class="mb-2"><strong>Monto: $<span th:text="${l.totalAmount}">0.00</span></strong></p>
 
                         <a class="btn btn-primary btn-sm" th:href="@{/liquidations/{id}(id=${l.id})}">Ver</a>
                         <form th:action="@{/liquidations/{id}/delete(id=${l.id})}" method="post" style="display:inline;">
