@@ -1,11 +1,11 @@
 package com.entrega1.trabajo.service;
 
 import com.entrega1.trabajo.model.Game;
-import com.entrega1.trabajo.repository.GameRepository;
+import com.entrega1.trabajo.model.Liquidation;
 import com.entrega1.trabajo.model.RefereeRequest;
+import com.entrega1.trabajo.repository.GameRepository;
+import com.entrega1.trabajo.repository.LiquidationRepository;
 import com.entrega1.trabajo.repository.RefereeRequestRepository;
-
-import org.apache.logging.log4j.util.PropertySource.Comparator;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -16,10 +16,14 @@ import java.util.*;
 public class GameService {
     private final GameRepository juegoRepository;
     private final RefereeRequestRepository refereeRequestRepository;
+    private final LiquidationRepository liquidationRepository;
 
-    public GameService(GameRepository juegoRepository, RefereeRequestRepository refereeRequestRepository) {
+    public GameService(GameRepository juegoRepository,
+                       RefereeRequestRepository refereeRequestRepository,
+                       LiquidationRepository liquidationRepository) {
         this.juegoRepository = juegoRepository;
         this.refereeRequestRepository = refereeRequestRepository;
+        this.liquidationRepository = liquidationRepository;
     }
 
     public List<Game> findAll() {
@@ -52,13 +56,29 @@ public class GameService {
     }
 
     public void deleteById(Integer id) {
-        // Elimina todas las RefereeRequest que referencian este Game
+        // 1) Elimina todas las RefereeRequest que referencian este Game
         List<RefereeRequest> requests = refereeRequestRepository.findAll();
         for (RefereeRequest req : requests) {
-            if (req.getGame() != null && req.getGame().getId() == id) {
+            if (req.getGame() != null && Objects.equals(req.getGame().getId(), id)) {
                 refereeRequestRepository.delete(req);
             }
         }
+
+        // 2) Quitar referencias en liquidaciones (tabla de unión liquidation_games)
+        Optional<Game> gameOpt = juegoRepository.findById(id);
+        if (gameOpt.isPresent()) {
+            Game game = gameOpt.get();
+            List<Liquidation> liquidations = liquidationRepository.findAll();
+            for (Liquidation liq : liquidations) {
+                if (liq.getGames() != null && liq.getGames().removeIf(g -> Objects.equals(g.getId(), id))) {
+                    // Recalcular monto tras remover el game
+                    liq.setTotalAmount(liq.calculateAmount());
+                    liquidationRepository.save(liq);
+                }
+            }
+        }
+
+        // 3) Finalmente borrar el game
         juegoRepository.deleteById(id);
     }
 
