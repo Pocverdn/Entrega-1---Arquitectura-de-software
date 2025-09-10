@@ -2,6 +2,8 @@ package com.entrega1.trabajo.service;
 
 import com.entrega1.trabajo.model.Game;
 import com.entrega1.trabajo.repository.GameRepository;
+import com.entrega1.trabajo.model.RefereeRequest;
+import com.entrega1.trabajo.repository.RefereeRequestRepository;
 
 import org.apache.logging.log4j.util.PropertySource.Comparator;
 import org.springframework.stereotype.Service;
@@ -13,9 +15,11 @@ import java.util.*;
 @Service
 public class GameService {
     private final GameRepository juegoRepository;
+    private final RefereeRequestRepository refereeRequestRepository;
 
-    public GameService(GameRepository juegoRepository) {
+    public GameService(GameRepository juegoRepository, RefereeRequestRepository refereeRequestRepository) {
         this.juegoRepository = juegoRepository;
+        this.refereeRequestRepository = refereeRequestRepository;
     }
 
     public List<Game> findAll() {
@@ -48,8 +52,15 @@ public class GameService {
     }
 
     public void deleteById(Integer id) {
+        // Elimina todas las RefereeRequest que referencian este Game
+        List<RefereeRequest> requests = refereeRequestRepository.findAll();
+        for (RefereeRequest req : requests) {
+            if (req.getGame() != null && req.getGame().getId() == id) {
+                refereeRequestRepository.delete(req);
+            }
+        }
         juegoRepository.deleteById(id);
-    }    
+    }
 
     public List<Game> gameFuture(){
         List<Game> games = new ArrayList<>();

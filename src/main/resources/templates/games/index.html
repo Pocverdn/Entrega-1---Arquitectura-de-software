@@ -21,7 +21,7 @@
             <div class="col-md-4 col-lg-3 mb-2" th:each="game : ${games}">
                 <div class="card">
                     <div class="card-body text-center">
-                        <h3 th:text="${game.id}"></h3>
+                        <!-- <h3 th:text="${game.id}"></h3> -->
                         <p th:text="${game.name}"></p>
                         <a class="btn btn-primary" th:href="@{/games/{id}(id=${game.id})}">Ver</a>
                     </div>
