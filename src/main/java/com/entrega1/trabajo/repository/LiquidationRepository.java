@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LiquidationRepository extends JpaRepository<Liquidation, Integer> {
-    // custom queries (findByReferee, findByPeriod, etc.) can be added here
+    
 }
