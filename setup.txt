@@ -1,0 +1,2 @@
+Corrrer  ./mvnw spring-boot:run
+dentro de la carpeta donde esta el proyecto.
