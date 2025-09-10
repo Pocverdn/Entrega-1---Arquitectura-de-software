@@ -22,7 +22,10 @@
                         <h5 class="card-title" th:text="${liquidation.referee.name}">Nombre Árbitro</h5>
                         <p class="card-text mb-1"><strong>Games incluidos:</strong></p>
                         <ul class="list-group list-group-flush mb-3">
-                            <li th:each="g : ${liquidation.games}" class="list-group-item" th:text="${g.name}"></li>
+                            <li th:each="g : ${liquidation.games}" class="list-group-item">
+                                <span th:text="${g.name}"></span>
+                                <span class="float-end">$100.000</span>
+                            </li>
                         </ul>
                         <p class="card-text mb-1"><strong>Monto total:</strong> $<span th:text="${liquidation.totalAmount}"></span></p>
                         <p class="card-text mb-1"><strong>Fecha creación:</strong> <span th:text="${liquidation.createdAt}"></span></p>
@@ -38,6 +41,7 @@
                             <button type="submit" class="btn btn-danger">Eliminar</button>
                         </form>
 
+                        <a th:href="@{/liquidations/{id}/pdf(id=${liquidation.id})}" class="btn btn-success" target="_blank">Descargar PDF</a>
                         <a th:href="@{/liquidations}" class="btn btn-secondary">Volver</a>
                     </div>
                 </div>
