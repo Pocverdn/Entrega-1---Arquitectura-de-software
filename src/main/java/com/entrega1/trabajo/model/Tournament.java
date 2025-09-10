@@ -5,10 +5,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Tournament entity representing a competition/tournament.
- * Added to satisfy the project requirement.
- */
+
 @Entity
 @Table(name = "tournament")
 public class Tournament {
@@ -38,8 +35,7 @@ public class Tournament {
         game.setTournament(this);
     }
 
-    // Example relationship placeholder: if matches/events are implemented later,
-    // they can reference Tournament with a ManyToOne. For now keep simple.
+  
     public Tournament() {}
 
     public Tournament(String name, String location, LocalDate startDate, LocalDate endDate) {
