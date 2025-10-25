@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.entrega1.trabajo.service.UserDetailsServiceImpl;
 import com.entrega1.trabajo.model.Referee;
-import com.entrega1.trabajo.service.RefereeService;
 
 
 @Controller
@@ -23,8 +22,6 @@ public class HomeController {
     @GetMapping("/")
     public String index(Model model, Principal principal){
         Referee referee = userDetailsService.getRefereeByUsername(principal.getName());
-
-        System.out.println(referee);
 
         model.addAttribute("title", "Entrega 1 -- Estructura de Software");
 
