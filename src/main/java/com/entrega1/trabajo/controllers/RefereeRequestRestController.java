@@ -68,8 +68,23 @@ public class RefereeRequestRestController {
                     description = "Un ejemplo de cómo se acepta",
                     value = """
                         {
-                            "username": "santiago",
-                            "password": "123",
+                            "id": 48,
+                            "status": "aceptada",
+                            "referee": {
+                                "id": 34,
+                                "username": "santiago"
+                            },
+                            "game": {
+                                "id": 82,
+                                "name": "sad",
+                                "rules": "prueba",
+                                "teams": "asd",
+                                "dateStart": "2025-10-30",
+                                "referee": {
+                                    "id": 34,
+                                    "username": "santiago"
+                                }
+                            }
                         }
                     """
                     ),
@@ -78,8 +93,23 @@ public class RefereeRequestRestController {
                         description = "Otro ejemplo de autentificacion",
                         value = """
                             {
-                            "username": "pepe",
-                            "password": "456",
+                                "id": 47,
+                                "status": "Rechazada",
+                                "referee": {
+                                    "id": 34,
+                                    "username": "santiago"
+                                },
+                                "game": {
+                                    "id": 82,
+                                    "name": "sad",
+                                    "rules": "prueba",
+                                    "teams": "asd",
+                                    "dateStart": "2025-10-30",
+                                    "referee": {
+                                        "id": 34,
+                                        "username": "santiago"
+                                    }
+                                }
                             }
                         """
                     )
@@ -138,8 +168,23 @@ public class RefereeRequestRestController {
                     description = "Un ejemplo de cómo autentificar un árbitro",
                     value = """
                         {
-                            "username": "santiago",
-                            "password": "123",
+                            "id": 48,
+                            "status": "Rechazada",
+                            "referee": {
+                                "id": 34,
+                                "username": "santiago"
+                            },
+                            "game": {
+                                "id": 82,
+                                "name": "sad",
+                                "rules": "prueba",
+                                "teams": "asd",
+                                "dateStart": "2025-10-30",
+                                "referee": {
+                                    "id": 34,
+                                    "username": "santiago"
+                                }
+                            }
                         }
                     """
                     ),
@@ -148,8 +193,23 @@ public class RefereeRequestRestController {
                         description = "Otro ejemplo de autentificacion",
                         value = """
                             {
-                            "username": "pepe",
-                            "password": "456",
+                                "id": 48,
+                                "status": "Rechazada",
+                                "referee": {
+                                    "id": 34,
+                                    "username": "santiago"
+                                },
+                                "game": {
+                                    "id": 82,
+                                    "name": "sad",
+                                    "rules": "prueba",
+                                    "teams": "asd",
+                                    "dateStart": "2025-10-30",
+                                    "referee": {
+                                        "id": 34,
+                                        "username": "santiago"
+                                    }
+                                }
                             }
                         """
                     )
@@ -179,7 +239,7 @@ public class RefereeRequestRestController {
         }
 
 
-        req.setStatus("Rechazada");
+        req.setStatus("rechazada");
         requestRepository.save(req);
 
         RefereeRequestDTO responseDTO = new RefereeRequestDTO(req);

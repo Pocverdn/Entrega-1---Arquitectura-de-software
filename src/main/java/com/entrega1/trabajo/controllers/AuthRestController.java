@@ -177,7 +177,7 @@ public class AuthRestController {
                     value = """
                         {
                             "username": "santiago",
-                            "password": "123",
+                            "password": "123"
                         }
                     """
                     ),
@@ -187,7 +187,7 @@ public class AuthRestController {
                         value = """
                             {
                             "username": "pepe",
-                            "password": "456",
+                            "password": "456"
                             }
                         """
                     )
