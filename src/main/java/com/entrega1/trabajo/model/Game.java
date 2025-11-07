@@ -19,6 +19,11 @@ public class Game {
    @Column(name = "name", nullable = false, length = 100)
    private String name;
 
+   //@NotBlank(message = "El nombre es obligatorio")
+   //@Size(min = 2, max = 100, message = "El stadium debe tener entre 2 y 100 caracteres")
+   @Column(name = "stadium", nullable = false, length = 100)
+   private String stadium;
+
    //@NotBlank(message = "Cuales son las reglas") Talvez se pueden dejar vacias?
    //@Size(min = 0, max = 1024, message = "El limite es de 1024 characteres")
    @Column(name = "rules", nullable = false, length = 1024)
@@ -72,6 +77,14 @@ public class Game {
 
    public void setName(String name) {
       this.name = name;
+   }
+
+   public String getStadium() {
+      return stadium;
+   }
+
+   public void setStadium(String stadium) {
+      this.stadium = stadium;
    }
 
    public String getTeams() {

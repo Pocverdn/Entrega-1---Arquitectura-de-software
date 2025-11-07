@@ -58,7 +58,7 @@ public class SecurityConfig {
     @Order(1)
     public SecurityFilterChain apiFilterChain(HttpSecurity http, AuthenticationProvider authenticationProvider) throws Exception {
         http
-            .securityMatcher("/api/**", "/v3/api-docs/**", "/swagger-ui/**")
+            .securityMatcher("/api/**")
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/api/auth/**", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
                 .anyRequest().authenticated() 
@@ -79,6 +79,7 @@ public class SecurityConfig {
     @Order(2)
     public SecurityFilterChain filterChain(HttpSecurity http, AuthenticationProvider authenticationProvider) throws Exception {
         http
+            .securityMatcher("/**")
             .authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login", "/register", "/css/**", "/js/**", "/h2-console/**").permitAll()
                 .anyRequest().authenticated()

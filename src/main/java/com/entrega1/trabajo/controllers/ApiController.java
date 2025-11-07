@@ -16,7 +16,7 @@ import com.entrega1.trabajo.DTOs.ApiDTO;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clima")
+@RequestMapping("/api/clima")
 @Tag(
     name = "clima API",
     description = """

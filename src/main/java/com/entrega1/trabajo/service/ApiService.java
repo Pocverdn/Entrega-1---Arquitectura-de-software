@@ -21,19 +21,17 @@ public class ApiService {
 
     public ApiDTO obtenerClima(String ciudad) {
         try {
-            // Construir la URL completa
             String url = UriComponentsBuilder.fromHttpUrl(apiUrl)
                     .queryParam("key", apiKey)
                     .queryParam("q", ciudad)
                     .toUriString();
 
-            // Llamar a la API
             return restTemplate.getForObject(url, ApiDTO.class);
 
         } catch (RestClientException e) {
 
             System.out.println("Error al consultar la API del clima: " + e.getMessage());
-            // Puedes loguear el error o devolver un objeto vacío
+
             ApiDTO errorResponse = new ApiDTO();
 
             ApiDTO.Location loc = new ApiDTO.Location();

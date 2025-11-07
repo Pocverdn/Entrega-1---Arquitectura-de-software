@@ -35,6 +35,11 @@
                             <span th:text="${game.teams}"></span>
                         </p>
 
+                        <p class="card-text mb-3">
+                            <strong>Stadium:</strong>
+                            <span th:text="${game.stadium}"></span>
+                        </p>
+
                         <form th:action="@{/games/{id}/delete(id=${game.id})}" 
                             method="post" style="display:inline;">
                             <button type="submit" class="btn btn-danger">Delete</button>

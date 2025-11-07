@@ -28,6 +28,13 @@
                     </div>
 
                     <div class="mb-3">
+                        <label class="form-label">Stadium</label>
+                        <select th:field="*{stadium}" class="form-control">
+                            <option th:each="stadium : ${stadiums}" th:value="${stadium}" th:text="${stadium}"></option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
                         <label class="form-label">Rules</label>
                         <input type="text" th:field="*{rules}" class="form-control" placeholder="Enter rules" required>
                     </div>

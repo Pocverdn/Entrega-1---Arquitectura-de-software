@@ -5,6 +5,8 @@ import com.entrega1.trabajo.service.GameService;
 import com.entrega1.trabajo.repository.RefereeRepository;
 import com.entrega1.trabajo.repository.TournamentRepository;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -39,9 +41,19 @@ public class GameController {
 
     @GetMapping("/form")
     public String form(Model model) {
+
+        List<String> stadiums = List.of(
+            "Estadio Nacional",
+            "Camp Nou",
+            "Santiago Bernabéu",
+            "Old Trafford",
+            "Maracaná"
+        );
+
         model.addAttribute("game", new Game());
         model.addAttribute("referees", refereeRepository.findAll()); 
         model.addAttribute("tournaments", tournamentRepository.findAll()); 
+        model.addAttribute("stadiums", stadiums);
         return "games/form";
     }
 

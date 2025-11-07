@@ -8,6 +8,7 @@ public class GamesDTO {
     
     private int id;
     private String name;
+    private String stadium;
     private String rules;
     private String teams;
     private LocalDate dateStart;
@@ -18,6 +19,7 @@ public class GamesDTO {
     public GamesDTO(Game game) {
         this.id = game.getId();
         this.name = game.getName();
+        this.stadium = game.getStadium();
         this.rules = game.getRules();
         this.teams = game.getTeams();
         this.dateStart = game.getDateStart();
@@ -46,6 +48,14 @@ public class GamesDTO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStadium() {
+        return stadium;
+    }
+
+    public void setStadium(String stadium) {
+        this.stadium = stadium;
     }
 
     public String getTeams() {
