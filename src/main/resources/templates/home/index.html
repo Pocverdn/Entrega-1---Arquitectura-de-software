@@ -64,29 +64,55 @@
         </div>
         <!-- Solicitudes de arbitraje -->
         <div class="container mt-4">
-            <h4>Requests for arbitration</h4>
             <div class="row">
-                <div class="col-md-6" th:each="req : ${refereeRequests}">
-                    <div class="card mb-2 shadow-sm">
+
+                <div class="col-md-6">
+                    <h4>Requests for arbitration</h4>
+                    <div class="card shadow-sm">
                         <div class="card-body">
-                            <strong th:text="${req.game.name}">Game</strong>
-                            <span class="badge bg-warning" th:if="${req.status == 'pendiente'}">Pending</span>
-                            <span class="badge bg-success" th:if="${req.status == 'aceptada'}">Accepted</span>
-                            <span class="badge bg-danger" th:if="${req.status == 'rechazada'}">rejected</span>
-                            <div th:if="${req.status == 'pendiente'}">
-                                <form th:action="@{/requests/{id}/accept(id=${req.id})}" method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-success btn-sm">Accept</button>
-                                </form>
-                                <form th:action="@{/requests/{id}/reject(id=${req.id})}" method="post" style="display:inline;">
-                                    <button type="submit" class="btn btn-danger btn-sm">reject</button>
-                                </form>
+                            <div th:if="${#lists.isEmpty(refereeRequests)}">
+                                <p class="text-muted">No requests at the moment.</p>
+                            </div>
+
+                            <div th:each="req : ${refereeRequests}" th:if="${req.status == 'pendiente'}" class="mb-3 border-bottom pb-2">
+                                <strong th:text="${req.game.name}">Game</strong>
+                                <span class="badge bg-warning">Pending</span>
+
+                                <div class="mt-2">
+                                    <form th:action="@{/requests/{id}/accept(id=${req.id})}" method="post" style="display:inline;" onsubmit="setTimeout(() => location.reload(), 500)">
+                                        <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                                    </form>
+                                    <form th:action="@{/requests/{id}/reject(id=${req.id})}" method="post" style="display:inline;" onsubmit="setTimeout(() => location.reload(), 500)">
+                                        <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <h4>Accepted games</h4>
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <div th:each="req : ${refereeRequests}" th:if="${req.status == 'aceptada'}" class="mb-3 border-bottom pb-2">
+                                <strong th:text="${req.game.name}">Game</strong>
+                                <span class="badge bg-success">Accepted</span>
+
+                                <div class="d-grid gap-2 mt-2">
+                                    <a class="btn btn-primary btn-sm" th:href="@{/games/{id}(id=${req.game.id})}">See</a>
+                                </div>
+                                
+                            </div>
+
+                            <div th:if="${#lists.isEmpty(refereeRequests)}">
+                                <p class="text-muted">No accepted games yet.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
     
