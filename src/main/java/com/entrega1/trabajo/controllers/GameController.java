@@ -1,5 +1,8 @@
 package com.entrega1.trabajo.controllers;
 
+
+import com.entrega1.trabajo.service.ApiService;
+import com.entrega1.trabajo.DTOs.ApiDTO;
 import com.entrega1.trabajo.model.Game;
 import com.entrega1.trabajo.service.GameService;
 import com.entrega1.trabajo.repository.RefereeRepository;
@@ -19,11 +22,13 @@ public class GameController {
     private final GameService juegoService;
     private final RefereeRepository refereeRepository;
     private final TournamentRepository tournamentRepository;
+    private ApiService apiService;
 
-    public GameController (GameService juegoService, RefereeRepository refereeRepository, TournamentRepository tournamentRepository) {
+    public GameController (GameService juegoService, RefereeRepository refereeRepository, TournamentRepository tournamentRepository, ApiService apiService) {
         this.juegoService = juegoService;
         this.refereeRepository = refereeRepository;
         this.tournamentRepository = tournamentRepository;
+        this.apiService = apiService;
     }
     
    @GetMapping("/index")
@@ -35,6 +40,45 @@ public class GameController {
     @GetMapping("/{id}")
     public String show(@PathVariable int id, Model model) {
         Game game = juegoService.findById(id).orElseThrow();
+
+        double lat = 0.0;
+        double lon = 0.0;
+
+        switch (game.getStadium()) {
+            case "Madison Square Garden":
+                lat = 40.7505;
+                lon = -73.9934;
+
+                break;
+            
+            case "Crypto.com Arena":
+                lat = 40.7505;
+                lon = -73.9934;
+
+                break;
+        
+            case "United Center":
+                lat = 40.7505;
+                lon = -73.9934;
+
+                break;
+        
+            case "TD Garden":
+                lat = 40.7505;
+                lon = -73.9934;
+
+                break;
+
+            case "Barclays Center":
+                lat = 40.7505;
+                lon = -73.9934;
+
+                break;
+        }
+
+        ApiDTO clima = apiService.obtenerClima(lat, lon);
+        
+        model.addAttribute("clima", clima);
         model.addAttribute("game", game);
         return "games/show";
     }  
@@ -43,11 +87,11 @@ public class GameController {
     public String form(Model model) {
 
         List<String> stadiums = List.of(
-            "Estadio Nacional",
-            "Camp Nou",
-            "Santiago Bernabéu",
-            "Old Trafford",
-            "Maracaná"
+            "Madison Square Garden",
+            "Staples Center",
+            "United Center",
+            "TD Garden",
+            "Barclays Center"
         );
 
         model.addAttribute("game", new Game());

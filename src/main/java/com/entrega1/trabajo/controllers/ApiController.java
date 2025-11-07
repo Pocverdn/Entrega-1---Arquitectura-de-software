@@ -13,7 +13,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 import com.entrega1.trabajo.DTOs.ApiDTO;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/clima")
@@ -35,8 +34,8 @@ public class ApiController {
 
     @Operation(summary = "Obtener clima actual por ciudad", description = "Consulta el clima actual usando una API externa.")
     @GetMapping("/actual")
-    public ApiDTO getClimaActual(@RequestParam String ciudad) {
-        return apiService.obtenerClima(ciudad);
+    public ApiDTO getClimaActual(@RequestParam double lat, @RequestParam double lon) {
+        return apiService.obtenerClima(lat, lon);
     }
 
 }

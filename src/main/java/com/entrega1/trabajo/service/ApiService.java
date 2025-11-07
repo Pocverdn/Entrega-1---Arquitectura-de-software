@@ -19,11 +19,12 @@ public class ApiService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public ApiDTO obtenerClima(String ciudad) {
+    public ApiDTO obtenerClima(double lat, double lon) {
+        String coordenadas = lat + "," + lon;
         try {
             String url = UriComponentsBuilder.fromHttpUrl(apiUrl)
                     .queryParam("key", apiKey)
-                    .queryParam("q", ciudad)
+                    .queryParam("q", coordenadas)
                     .toUriString();
 
             return restTemplate.getForObject(url, ApiDTO.class);
@@ -35,7 +36,7 @@ public class ApiService {
             ApiDTO errorResponse = new ApiDTO();
 
             ApiDTO.Location loc = new ApiDTO.Location();
-            loc.setName(ciudad);
+            loc.setName(coordenadas);
             loc.setRegion("Desconocido");
             loc.setLocaltime("N/A");
 

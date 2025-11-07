@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.entrega1.trabajo.service.UserDetailsServiceImpl;
 import com.entrega1.trabajo.model.Referee;
 
-import java.util.List;
-
 @Controller
 public class HomeController {
     @Autowired
@@ -47,8 +45,8 @@ public class HomeController {
     }
 
     @GetMapping("/table")
-    public String mostrarClima(@RequestParam(defaultValue = "Paris") String ciudad, Model model) {
-        ApiDTO clima = apiService.obtenerClima(ciudad);
+    public String mostrarClima(@RequestParam double lat, @RequestParam double lon, Model model) {
+        ApiDTO clima = apiService.obtenerClima(lat, lon);
         model.addAttribute("clima", clima);
         return "home/table";
     }
