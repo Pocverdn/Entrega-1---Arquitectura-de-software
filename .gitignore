@@ -31,3 +31,5 @@ build/
 
 ### VS Code ###
 .vscode/
+mvnw
+uploads/h2db/clase10.mv.db
