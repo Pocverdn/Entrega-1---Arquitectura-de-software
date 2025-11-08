@@ -6,13 +6,17 @@
   background-color: #000000;
 }
 .bg-primary {
-  background-color: chocolate !important;
+  background-color: rgb(133, 31, 0) !important;
   
 }
 .rubber_bg {
   background-image: url("/img/black-road-texture.jpg");
 }
-
+.running_bg {
+  background-image: url("/img/run.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 nav{
   font-weight: 700;
 }
