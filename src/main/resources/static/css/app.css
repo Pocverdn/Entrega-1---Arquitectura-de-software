@@ -29,8 +29,22 @@
   }
 
   .btn-primary:active {
+
+     background-color: rgb(179, 0, 0) !important; /* Even darker shade for active */
+     border-color: rgb(179, 0, 0) !important;
+     color: red;
+  }
+
+  .btn-primary:focus {
      background-color: rgb(179, 0, 0); /* Even darker shade for active */
      border-color: rgb(179, 0, 0);
+     color: red;
+  }  
+
+  .btn-transition  {
+      background-color: rgb(179, 0, 0); /* Even darker shade for active */
+     border-color: rgb(179, 0, 0);   
+     box-shadow:rgb(133, 31, 0);
   }
 
 nav{
