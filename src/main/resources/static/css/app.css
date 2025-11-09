@@ -17,6 +17,22 @@
   background-repeat: no-repeat;
   background-size: cover;
 }
+.btn-primary {
+    background-color: rgb(0, 0, 0); /* Change to your desired background color */
+    border-color: rgb(0, 0, 0); /* Optional: Change border color to match */
+    color: rgb(255, 255, 255); /* Optional: Change text color if needed */
+ }
+
+ .btn-primary:hover {
+    background-color: red; /* Darker shade for hover */
+     border-color: red;
+  }
+
+  .btn-primary:active {
+     background-color: rgb(179, 0, 0); /* Even darker shade for active */
+     border-color: rgb(179, 0, 0);
+  }
+
 nav{
   font-weight: 700;
 }
