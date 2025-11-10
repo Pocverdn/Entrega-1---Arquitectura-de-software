@@ -9,41 +9,41 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/app.css}">
-    <title th:text="${title} ?: 'Entrega 1'"></title>
+    <title th:text="#{section.title}"></title>
 </head>
 <body class="running_bg ">
     <div th:replace="~{fragments/header :: header}"></div>
 
     <div sec:authorize="hasRole('ADMIN')">
         <div class="container my-4">
-            <h2>CRUD Referees</h2>
+            <h2 th:text="#{crud.refeere}"></h2>
             <div class="d-grid gap-2">
-                <a class="btn btn-primary" th:href="@{/referees/form}">Form</a>
-                <a class="btn btn-primary" th:href="@{/referees/index}">List</a>
+                <a class="btn btn-primary" th:href="@{/referees/form}" th:text="#{crud.create}"></a>
+                <a class="btn btn-primary" th:href="@{/referees/index}" th:text="#{crud.list}"></a>
             </div>
         </div>
 
         <div class="container my-4">
-            <h2>CRUD tournaments</h2>
+            <h2 th:text="#{crud.tournaments}"></h2>
             <div class="d-grid gap-2">
-                <a class="btn btn-primary" th:href="@{/tournaments/form}">Form</a>
-                <a class="btn btn-primary" th:href="@{/tournaments/index}">List</a>
+                <a class="btn btn-primary" th:href="@{/tournaments/form}" th:text="#{crud.create}"></a>
+                <a class="btn btn-primary" th:href="@{/tournaments/index}" th:text="#{crud.list}"></a>
             </div>
         </div>
 
         <div class="container my-4">
-            <h2>CRUD games</h2>
+            <h2 th:text="#{crud.games}"></h2>
             <div class="d-grid gap-2">
-                <a class="btn btn-primary" th:href="@{/games/form}">Form</a>
-                <a class="btn btn-primary" th:href="@{/games/index}">List</a>
+                <a class="btn btn-primary" th:href="@{/games/form}" th:text="#{crud.create}"></a>
+                <a class="btn btn-primary" th:href="@{/games/index}" th:text="#{crud.list}"></a>
             </div>
         </div>
 
         <div class="container my-4">
-            <h2>CRUD Liquidation</h2>
+            <h2 th:text="#{crud.liquidation}"></h2>
             <div class="d-grid gap-2">
-                <a class="btn btn-primary" th:href="@{/liquidations/form}">Form</a>
-                <a class="btn btn-primary" th:href="@{/liquidations/index}">List</a>
+                <a class="btn btn-primary" th:href="@{/liquidations/form}" th:text="#{crud.create}"></a>
+                <a class="btn btn-primary" th:href="@{/liquidations/index}" th:text="#{crud.list}"></a>
             </div>
         </div>
     </div>
@@ -67,23 +67,23 @@
             <div class="row">
 
                 <div class="col-md-6">
-                    <h4>Requests for arbitration</h4>
+                    <h4 th:text="#{requests.arbitration.title}"></h4>
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <div th:if="${#lists.isEmpty(refereeRequests)}">
-                                <p class="text-muted">No requests at the moment.</p>
+                                <p class="text-muted" th:text="'No requests at the moment.'"></p>
                             </div>
 
                             <div th:each="req : ${refereeRequests}" th:if="${req.status == 'pendiente'}" class="mb-3 border-bottom pb-2">
                                 <strong th:text="${req.game.name}">Game</strong>
-                                <span class="badge bg-warning">Pending</span>
+                                <span class="badge bg-warning" th:text="#{game.status.pending}"></span>
 
                                 <div class="mt-2">
                                     <form th:action="@{/requests/{id}/accept(id=${req.id})}" method="post" style="display:inline;" onsubmit="setTimeout(() => location.reload(), 500)">
-                                        <button type="submit" class="btn btn-success btn-sm">Accept</button>
+                                        <button type="submit" class="btn btn-success btn-sm" th:text="#{game.status.accepted}"></button>
                                     </form>
                                     <form th:action="@{/requests/{id}/reject(id=${req.id})}" method="post" style="display:inline;" onsubmit="setTimeout(() => location.reload(), 500)">
-                                        <button type="submit" class="btn btn-danger btn-sm">Reject</button>
+                                        <button type="submit" class="btn btn-danger btn-sm" th:text="#{game.status.reject}"></button>
                                     </form>
                                 </div>
                             </div>
@@ -92,29 +92,26 @@
                 </div>
 
                 <div class="col-md-6">
-                    <h4>Accepted games</h4>
+                    <h4 th:text="#{games.accepted.title}"></h4>
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <div th:each="req : ${refereeRequests}" th:if="${req.status == 'aceptada'}" class="mb-3 border-bottom pb-2">
                                 <strong th:text="${req.game.name}">Game</strong>
-                                <span class="badge bg-success">Accepted</span>
+                                <span class="badge bg-success" th:text="#{game.status.accepted}"></span>
 
                                 <div class="d-grid gap-2 mt-2">
-                                    <a class="btn btn-primary btn-sm" th:href="@{/games/{id}(id=${req.game.id})}">See</a>
+                                    <a class="btn btn-primary btn-sm" th:href="@{/games/{id}(id=${req.game.id})}" th:text="#{game.action.see}"></a>
                                 </div>
                                 
                             </div>
 
                             <div th:if="${#lists.isEmpty(refereeRequests)}">
-                                <p class="text-muted">No accepted games yet.</p>
+                                <p class="text-muted" th:text="'No accepted games yet.'"></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-    
 </body>
 </html>

@@ -4,17 +4,17 @@
     
     <div class="container">
         <img src="/img/logo.png" alt="Logo" width="150" height="150">
-        <a class="navbar-brand" href="/">Entrega 1</a>
+        <a class="navbar-brand" th:text="#{header.title}" href="/"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav ms-auto align-items-center">
-                <a class="nav-link active" th:href="@{/logout}">Log out</a>
-                <a class="nav-link active" th:href="@{/}">Profile</a>
+                <a class="nav-link active" th:href="@{/logout}" th:text="#{header.log_out}"></a>
+                <a class="nav-link active" th:href="@{/}" th:text="#{header.profile}"></a>
                 <div sec:authorize="hasRole('ADMIN')">
-                    <a class="nav-link active" th:href="@{/dashboard/index}">Admin dashboard</a>
+                    <a class="nav-link active" th:href="@{/dashboard/index}" th:text="#{header.admin}"></a>
                 </div>
                 <div class="d-flex ms-3">
                     <a th:href="@{/?lang=es}" class="btn btn-sm btn-outline-light me-2">Español</a>
@@ -27,7 +27,7 @@
 
 <header class="masthead bg-primary text-white text-center py-4">
     <div class="container d-flex align-items-center flex-column">
-        <h2 th:text="${subtitle} ?: 'Entrega 1 -- Estructura de Software'"></h2>
+        <h2 th:text="#{header.title}"></h2>
     </div>
 </header>
 </th:block>

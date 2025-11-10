@@ -17,53 +17,53 @@
     <div class="container mt-5">
         <div class="card shadow-lg rounded-3">
             <div class="card-header bg-primary text-white">
-                <h3 class="mb-0">Create New game</h3>
+                <h3 class="mb-0" th:text="#{form.referee.create_title}"></h3>
             </div>
             <div class="card-body">
                 <form th:action="@{/games}" th:object="${game}" method="post" enctype="multipart/form-data">
 
                     <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        <input type="text" th:field="*{name}" class="form-control" placeholder="Enter game name" required>
+                        <label class="form-label" th:text="#{game.create.name}"></label>
+                        <input type="text" th:field="*{name}" class="form-control" th:placeholder="#{game.create.referee_name}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Stadium</label>
+                        <label class="form-label" th:text="#{game.create.special}"></label>
                         <select th:field="*{stadium}" class="form-control">
                             <option th:each="stadium : ${stadiums}" th:value="${stadium}" th:text="${stadium}"></option>
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Rules</label>
-                        <input type="text" th:field="*{rules}" class="form-control" placeholder="Enter rules" required>
+                        <label class="form-label" th:text="#{game.create.league}"></label>
+                        <input type="text" th:field="*{rules}" class="form-control" th:placeholder="#{game.create.specialization}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Teams</label>
-                        <input type="text" th:field="*{teams}" class="form-control" placeholder="Enter teams names" required>
+                        <label class="form-label" th:text="#{game.create.games}"></label>
+                        <input type="text" th:field="*{teams}" class="form-control" th:placeholder="#{game.create.league}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Start Date</label>
+                        <label class="form-label" th:text="#{game.create.photo}"></label>
                         <input type="date" th:field="*{dateStart}" class="form-control" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Referee</label>
+                        <label class="form-label" th:text="#{game.create.referee}"></label>
                         <select th:field="*{referee}" class="form-control">
                             <option th:each="referee : ${referees}" th:value="${referee.id}" th:text="${referee.name}"></option>
                         </select>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Tournament</label>
+                        <label class="form-label" th:text="#{game.action.tournaments}"></label>
                         <select th:field="*{tournament}" class="form-control">
                             <option th:each="tournament : ${tournaments}" th:value="${tournament.id}" th:text="${tournament.name}"></option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-success">Save Game</button>
+                    <button type="submit" class="btn btn-success" th:text="#{button.save_referee}"></button>
                 </form>
             </div>
         </div>

@@ -9,13 +9,10 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/app.css}">
-    <title th:text="${title}">Entrega 1</title>
+    <title th:text="#{game.title}">Entrega 1</title>
 </head>
 <body class="running_bg ">
     <div th:replace="~{fragments/header :: header}"></div>
-
-    <h1 th:text="#{prueba1}"></h1>
-    <p th:text="#{prueba2}"></p>
 
     <div class="container my-4">
         <div class="card shadow-sm border-0">
@@ -24,25 +21,53 @@
 
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="mb-1"><strong>Fecha de inicio:</strong> <span th:text="${game.dateStart}"></span></p>
-                        <p class="mb-1"><strong>Reglas:</strong> <span th:text="${game.rules}"></span></p>
-                        <p class="mb-1"><strong>Equipos:</strong> <span th:text="${game.teams}"></span></p>
-                        <p class="mb-3"><strong>Cancha:</strong> <span th:text="${game.stadium}"></span></p>
+                        <p class="mb-1">
+                            <strong th:text="#{game.start_date} + ':'"></strong>
+                            <span th:text="${game.dateStart}"></span>
+                        </p>
+                        <p class="mb-1">
+                            <strong th:text="#{game.rules} + ':'"></strong>
+                            <span th:text="${game.rules}"></span>
+                        </p>
+                        <p class="mb-1">
+                            <strong th:text="#{game.teams} + ':'"></strong>
+                            <span th:text="${game.teams}"></span>
+                        </p>
+                        <p class="mb-3">
+                            <strong th:text="#{game.fields} + ':'"></strong>
+                            <span th:text="${game.stadium}"></span>
+                        </p>
 
-                        <form th:action="@{/games/{id}/delete(id=${game.id})}" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                        </form>
+                        <div sec:authorize="hasRole('ADMIN')">
+                            <form th:action="@{/games/{id}/delete(id=${game.id})}" method="post" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm" th:text="#{game.delete}"></button>
+                            </form>
+                        </div>
                     </div>
 
                     <div class="col-md-6 border-start ps-4">
                         <h5 class="card-title mb-3">
-                            Clima actual en <span th:text="${clima.location.name}">Ciudad</span>
+                            <span th:text="#{weather.title} + ' '"></span>
+                            <span th:text="${clima.location.name}">Ciudad</span>
                         </h5>
                         <ul class="list-unstyled mb-0">
-                            <li><strong>Región:</strong> <span th:text="${clima.location.region}"></span></li>
-                            <li><strong>Hora local:</strong> <span th:text="${clima.location.localtime}"></span></li>
-                            <li><strong>Temperatura:</strong> <span th:text="${clima.current.temp_c}"></span> °C (<span th:text="${clima.current.temp_f}"></span> °F)</li>
-                            <li><strong>Humedad:</strong> <span th:text="${clima.current.humidity}"></span>%</li>
+                            <li>
+                                <strong th:text="#{weather.region} + ':'"></strong>
+                                <span th:text="${clima.location.region}"></span>
+                            </li>
+                            <li>
+                                <strong th:text="#{weather.local_time} + ':'"></strong>
+                                <span th:text="${clima.location.localtime}"></span>
+                            </li>
+                            <li>
+                                <strong th:text="#{weather.temperature} + ':'"></strong>
+                                <span th:text="${clima.current.temp_c}"></span> °C 
+                                (<span th:text="${clima.current.temp_f}"></span> °F)
+                            </li>
+                            <li>
+                                <strong th:text="#{weather.humidity} + ':'"></strong>
+                                <span th:text="${clima.current.humidity}"></span>%
+                            </li>
                         </ul>
                     </div>
                 </div>
