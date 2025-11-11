@@ -16,14 +16,18 @@ public class PaymentController {
         this.paymentService = paymentService;
     }
 
-    // Muestra el formulario
+    
     @GetMapping("/simular")
-    public String mostrarFormularioPago(Model model) {
-        model.addAttribute("resultado", null);
+    public String mostrarFormularioPago(
+            @RequestParam(name = "nombre", required = false) String nombre,
+            Model model) {
+
+        model.addAttribute("nombre", nombre);   
+        model.addAttribute("resultado", null);  
         return "payments/simular-pago";
     }
 
-    // Procesa el formulario
+    
     @PostMapping("/simular")
     public String procesarPago(@RequestParam String nombre,
                                @RequestParam double saldo,
@@ -36,6 +40,7 @@ public class PaymentController {
 
         String resultado = paymentService.pagarReferee(referee, monto);
 
+        model.addAttribute("nombre", nombre);
         model.addAttribute("resultado", resultado);
         return "payments/simular-pago";
     }

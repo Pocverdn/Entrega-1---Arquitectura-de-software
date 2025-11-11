@@ -10,29 +10,44 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" th:href="@{/css/app.css}">
     <title th:text="${title}"></title>
-
 </head>
+
 <body class="running_bg ">
     <div th:replace="~{fragments/header :: header}"></div>
 
     <div class="container my-4">
-    <h2 class="text-center" th:text="${subtitle} ?: #{referee.index.title}"></h2>
+        <h2 class="text-center" th:text="${subtitle} ?: #{referee.index.title}"></h2>
+
         <div class="row">
             <div class="col-md-4 col-lg-3 mb-2" th:each="referee : ${referees}">
                 <div class="card">
                     <div class="card-body text-center">
+                        <!-- Imagen del referee -->
                         <img th:if="${referee.photoAsBase64 != null}"
-                        th:src="'data:image/jpeg;base64,' + ${referee.photoAsBase64}"
-                        alt="Referee photo"
-                        class="img-fluid rounded-circle mb-3"
-                        style="width: 150px; height: 150px; object-fit: cover;" />
+                             th:src="'data:image/jpeg;base64,' + ${referee.photoAsBase64}"
+                             alt="Referee photo"
+                             class="img-fluid rounded-circle mb-3"
+                             style="width: 150px; height: 150px; object-fit: cover;" />
+
+                        
                         <h3 th:text="${referee.name}"></h3>
-                        <a class="btn btn-primary" th:href="@{/referees/{id}(id=${referee.id})}" th:text="#{referee.button.see}">See</a>
+
+                        
+                        <a class="btn btn-primary me-2"
+                           th:href="@{/referees/{id}(id=${referee.id})}"
+                           th:text="#{referee.button.see}">
+                            See
+                        </a>
+
+                        
+                        <a class="btn btn-outline-success mt-2"
+                           th:href="@{/pagos/simular(nombre=${referee.name})}">
+                            Simular pago
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
 </html>

@@ -1,28 +1,83 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Simular pago a referee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS (mismo que en referee index) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet" crossorigin="anonymous">
+
+    <!-- Custom CSS (mismo app.css) -->
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+
+    <title>Simular pago</title>
 </head>
-<body>
-<h1>Simular pago a referee</h1>
+<body class="running_bg">
+<div th:replace="~{fragments/header :: header}"></div>
 
-<form th:action="@{/pagos/simular}" method="post">
-    <label>Nombre del referee:</label>
-    <input type="text" name="nombre" required><br><br>
+<div class="container my-4">
+    <h2 class="text-center mb-4">Simular pago a referee</h2>
 
-    <label>Saldo disponible:</label>
-    <input type="number" name="saldo" step="0.01" value="1000" required><br><br>
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card shadow">
+                <div class="card-body">
+                    <form th:action="@{/pagos/simular}" method="post">
 
-    <label>Monto a pagar:</label>
-    <input type="number" name="monto" step="0.01" required><br><br>
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre del referee</label>
+                            <input type="text"
+                                   id="nombre"
+                                   name="nombre"
+                                   class="form-control"
+                                   th:value="${nombre}"
+                                   required>
+                        </div>
 
-    <button type="submit">Simular pago</button>
-</form>
+                        <div class="mb-3">
+                            <label for="saldo" class="form-label">Saldo disponible</label>
+                            <input type="number"
+                                   id="saldo"
+                                   name="saldo"
+                                   class="form-control"
+                                   step="0.01"
+                                   value="1000"
+                                   required>
+                        </div>
 
-<div th:if="${resultado != null}">
-    <h3>Resultado:</h3>
-    <p th:text="${resultado}"></p>
+                        <div class="mb-3">
+                            <label for="monto" class="form-label">Monto a pagar</label>
+                            <input type="number"
+                                   id="monto"
+                                   name="monto"
+                                   class="form-control"
+                                   step="0.01"
+                                   required>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-success px-4">
+                                Procesar pago
+                            </button>
+                        </div>
+
+                        <div th:if="${resultado != null}"
+                             class="alert alert-info text-center mt-3"
+                             role="alert">
+                            <span th:text="${resultado}"></span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="text-center mt-3">
+                <a th:href="@{/referees}" class="btn btn-secondary">
+                    Volver al listado de referees
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>
