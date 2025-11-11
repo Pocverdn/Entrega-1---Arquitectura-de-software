@@ -47,6 +47,10 @@
      box-shadow:rgb(133, 31, 0);
   }
 
+  .table-bordered {
+      background-color: rgb(255, 167, 167);  
+  }
+
 nav{
   font-weight: 700;
 }
