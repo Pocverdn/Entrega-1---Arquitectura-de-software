@@ -10,8 +10,9 @@
   
 }
 .rubber_bg {
-  background-image: url("/img/black-road-texture.jpg");
+  background-image: url("../img/black-road-texture.jpg");
   background-size: cover;  
+  background-repeat: no-repeat;  
 }
 .running_bg {
   background-image: url("/img/run.jpg");
