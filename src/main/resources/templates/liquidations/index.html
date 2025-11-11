@@ -11,7 +11,7 @@
     <link rel="stylesheet" th:href="@{/css/app.css}">
     <title th:text="${title} ?: 'Lista de Liquidaciones'"></title>
 </head>
-<body class="rubber_bg ">
+<body class="running_bg ">
     <div th:replace="~{fragments/header :: header}"></div>
 
     <div class="container my-4">
@@ -41,7 +41,7 @@
             <div th:if="${#lists.isEmpty(liquidations)}" class="col-12">
                 <div class="alert alert-info" th:text="#{liquidation.index.empty}"></div>
                 <a th:href="@{/liquidations/form}" class="btn btn-primary" th:text="#{liquidation.index.create_first}"></a>
-            </div>z
+            </div>
         </div>
     </div>
 
