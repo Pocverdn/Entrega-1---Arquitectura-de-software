@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Simular pago a referee</title>
+</head>
+<body>
+<h1>Simular pago a referee</h1>
+
+<form th:action="@{/pagos/simular}" method="post">
+    <label>Nombre del referee:</label>
+    <input type="text" name="nombre" required><br><br>
+
+    <label>Saldo disponible:</label>
+    <input type="number" name="saldo" step="0.01" value="1000" required><br><br>
+
+    <label>Monto a pagar:</label>
+    <input type="number" name="monto" step="0.01" required><br><br>
+
+    <button type="submit">Simular pago</button>
+</form>
+
+<div th:if="${resultado != null}">
+    <h3>Resultado:</h3>
+    <p th:text="${resultado}"></p>
+</div>
+
+</body>
+</html>
