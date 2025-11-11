@@ -3,9 +3,7 @@ package com.entrega1.trabajo.service.payments;
 import com.entrega1.trabajo.model.Referee;
 import org.springframework.stereotype.Service;
 
-/**
- * Implementación que simula pagos restando el saldo disponible del referee.
- */
+
 @Service
 public class BalancePayment implements PaymentMethod {
 
