@@ -30,6 +30,12 @@ public class Referee {
     @OneToMany(mappedBy = "referee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Game> games = new ArrayList<>();
 
+    @Transient
+    private double saldoDisponible = 1000.0; // saldo para simulación de pagos
+
+
+    
+
 
     public void addGame(Game game){
         games.add(game);
@@ -100,6 +106,15 @@ public class Referee {
     public String getPhotoAsBase64() {
         return this.photo != null ? Base64.getEncoder().encodeToString(this.photo) : null;
     }
+
+    public double getSaldoDisponible() {
+        return saldoDisponible;
+    }
+
+    public void setSaldoDisponible(double saldoDisponible) {
+        this.saldoDisponible = saldoDisponible;
+    }
+
 
 
 }
