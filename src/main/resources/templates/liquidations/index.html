@@ -15,7 +15,7 @@
     <div th:replace="~{fragments/header :: header}"></div>
 
     <div class="container my-4">
-        <h2 class="text-center" th:text="${subtitle} ?: 'Liquidaciones'"></h2>
+        <h2 class="text-center" th:text="#{liquidation.index.title}">Liquidaciones</h2>
         <div class="row">
             <!-- Usamos la misma estructura de tarjetas que Referee -->
             <div class="col-md-4 col-lg-3 mb-3" th:each="l : ${liquidations}">
@@ -27,21 +27,21 @@
                              alt="Foto árbitro"
                              class="img-fluid rounded-circle mb-3"
                              style="width: 120px; height: 120px; object-fit: cover;" />
-                        <h5 th:text="${l.referee.name}">Nombre Árbitro</h5>
-                        <p class="mb-2"><strong>Monto: $<span th:text="${l.totalAmount}">0.00</span></strong></p>
+                        <h5 th:text="${l.referee.name}"></h5>
+                        <p class="mb-2"><strong th:text="#{liquidation.show.total_amount}">:</strong><span th:text="${l.totalAmount}"></span></p>
 
-                        <a class="btn btn-primary btn-sm" th:href="@{/liquidations/{id}(id=${l.id})}">Ver</a>
+                        <a class="btn btn-primary btn-sm" th:href="@{/liquidations/{id}(id=${l.id})}" th:text="#{liquidation.button.see}">Ver</a>
                         <form th:action="@{/liquidations/{id}/delete(id=${l.id})}" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                            <button type="submit" class="btn btn-danger btn-sm" th:text="#{liquidation.button.delete}"></button>
                         </form>
                     </div>
                 </div>
             </div>
             <!-- Si no hay liquidaciones, mostrar mensaje -->
             <div th:if="${#lists.isEmpty(liquidations)}" class="col-12">
-                <div class="alert alert-info">No hay liquidaciones registradas.</div>
-                <a th:href="@{/liquidations/form}" class="btn btn-primary">Crear primera liquidación</a>
-            </div>
+                <div class="alert alert-info" th:text="#{liquidation.index.empty}"></div>
+                <a th:href="@{/liquidations/form}" class="btn btn-primary" th:text="#{liquidation.index.create_first}"></a>
+            </div>z
         </div>
     </div>
 

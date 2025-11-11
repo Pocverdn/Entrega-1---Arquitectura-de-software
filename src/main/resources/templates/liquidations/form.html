@@ -17,13 +17,13 @@
     <div class="container mt-5">
         <div class="card shadow-lg rounded-3">
             <div class="card-header bg-primary text-white">
-                <h3 class="mb-0">Crear Nueva Liquidación</h3>
+                <h3 class="mb-0" th:text="#{liquidation.create.title}"></h3>
             </div>
             <div class="card-body">
                 <form th:action="@{/liquidations}" th:object="${liquidation}" method="post">
 
                     <div class="mb-3">
-                        <label class="form-label">Árbitro</label>
+                        <label class="form-label" th:text="#{liquidation.form.referee}"></label>
                         <select th:field="*{referee.id}" class="form-control" required>
                             <option th:each="r : ${referees}" 
                                     th:value="${r.id}" 
@@ -32,15 +32,15 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Games a liquidar</label>
+                        <label class="form-label" th:text="#{liquidation.form.games}"></label>
                         <select th:field="*{games}" class="form-control" multiple required>
                             <option th:each="g : ${games}" th:value="${g.id}" th:text="${g.name}"></option>
                         </select>
-                        <small class="form-text text-muted">Mantén presionada Ctrl (Windows) o Cmd (Mac) para seleccionar varios.</small>
+                        <small class="form-text text-muted" th:text="#{liquidation.form.games.help}"></small>
                     </div>
 
-                    <button type="submit" class="btn btn-success">Guardar Liquidación</button>
-                    <a th:href="@{/liquidations}" class="btn btn-secondary">Cancelar</a>
+                    <button type="submit" class="btn btn-success" th:text="#{liquidation.button.save}"></button>
+                    <a th:href="@{/liquidations}" class="btn btn-secondary" th:text="#{liquidation.button.cancel}"></a>
                 </form>
             </div>
         </div>

@@ -18,42 +18,41 @@
     <div class="container mt-5">
         <div class="card shadow-lg rounded-3">
             <div class="card-header bg-primary text-white">
-                <h3 class="mb-0">Create New Referee</h3>
+                <h3 class="mb-0" th:text="#{tournament.create.title}"></h3>
             </div>
             <div class="card-body">
                 <form th:action="@{/tournaments}" th:object="${tournament}" method="post" enctype="multipart/form-data">
 
                     <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        <input type="text" th:field="*{name}" class="form-control" placeholder="Enter tournament name" required>
+                        <label class="form-label" th:text="#{tournament.form.name}"></label>
+                        <input type="text" th:field="*{name}" class="form-control" th:placeholder="#{tournament.form.name.placeholder}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">location</label>
-                        <input type="text" th:field="*{location}" class="form-control" placeholder="Enter location" required>
+                        <label class="form-label" th:text="#{tournament.form.location}"></label>
+                        <input type="text" th:field="*{location}" class="form-control" th:placeholder="#{tournament.form.location.placeholder}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Start Date</label>
+                        <label class="form-label" th:text="#{tournament.form.start_date}"></label>
                         <input type="date" th:field="*{startDate}" class="form-control" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">End Date</label>
+                        <label class="form-label" th:text="#{tournament.form.end_date}"></label>
                         <input type="date" th:field="*{endDate}" class="form-control" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Games</label>
+                        <label class="form-label" th:text="#{tournament.form.games}"></label>
                         <select th:field="*{games}" multiple class="form-control">
-                            <option value="">None</option>
+                            <option value="" th:text="#{tournament.form.games.none}"></option>
                             <option th:each="game : ${games}" th:value="${game.id}" th:text="${game.name}"></option>
                         </select>
                     </div>
 
 
-
-                    <button type="submit" class="btn btn-success">Save Tournament</button>
+                    <button type="submit" class="btn btn-success" th:text="#{tournament.button.save}"></button>
                 </form>
             </div>
         </div>

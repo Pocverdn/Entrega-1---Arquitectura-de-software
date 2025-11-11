@@ -16,8 +16,8 @@
 
     <div class="container mt-5">
         <div class="alert alert-success shadow-lg rounded-3">
-            <h4 th:text="${message}">Referee has been created successfully!</h4>
-            <a th:href="@{/referees/form}" class="btn btn-primary mt-3">Create another</a>
+            <h4 th:text="${message} ?: #{referee.success.message}">Referee has been created successfully!</h4>
+            <a th:href="@{/referees/form}" class="btn btn-primary mt-3" th:text="#{referee.success.create_another}">Create another</a>
         </div>
     </div>
 

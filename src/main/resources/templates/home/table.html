@@ -23,7 +23,7 @@
 <body class="running_bg ">
 
 <div class="clima-box">
-    <h2 th:text="'Clima actual en ' + ${clima.location.name}">Ciudad</h2>
+    <h2 th:text="'Clima actual en ' + ${clima.location.name}"></h2>
     <p th:text="'Región: ' + ${clima.location.region}"></p>
     <p th:text="'Hora local: ' + ${clima.location.localtime}"></p>
     <p th:text="'Temperatura: ' + ${clima.current.temp_c} + ' °C (' + ${clima.current.temp_f} + ' °F)'"></p>

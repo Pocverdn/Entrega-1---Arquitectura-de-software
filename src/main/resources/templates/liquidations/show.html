@@ -20,22 +20,22 @@
                 <div class="col-md-8">
                     <div class="card-body">
                         <h5 class="card-title" th:text="${liquidation.referee.name}">Nombre Árbitro</h5>
-                        <p class="card-text mb-1"><strong>Games incluidos:</strong></p>
+                        <p class="card-text mb-1"><strong th:text="#{liquidation.show.games_included}">Games incluidos:</strong></p>
                         <ul class="list-group list-group-flush mb-3">
                             <li th:each="g : ${liquidation.games}" class="list-group-item">
                                 <span th:text="${g.name}"></span>
                                 <span class="float-end">$100.000</span>
                             </li>
                         </ul>
-                        <p class="card-text mb-1"><strong>Monto total:</strong> $<span th:text="${liquidation.totalAmount}"></span></p>
-                        <p class="card-text mb-1"><strong>Fecha creación:</strong> <span th:text="${liquidation.createdAt}"></span></p>
+                        <p class="card-text mb-1"><strong th:text="#{liquidation.show.total_amount}">Monto total:</strong> $<span th:text="${liquidation.totalAmount}"></span></p>
+                        <p class="card-text mb-1"><strong th:text="#{liquidation.show.creation_date}">Fecha creación:</strong> <span th:text="${liquidation.createdAt}"></span></p>
 
                         <form th:action="@{/liquidations/{id}/delete(id=${liquidation.id})}" method="post" style="display:inline;">
-                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                            <button type="submit" class="btn btn-danger" th:text="#{liquidation.button.delete}">Eliminar</button>
                         </form>
 
-                        <a th:href="@{/liquidations/{id}/pdf(id=${liquidation.id})}" class="btn btn-success" target="_blank">Descargar PDF</a>
-                        <a th:href="@{/liquidations}" class="btn btn-secondary">Volver</a>
+                        <a th:href="@{/liquidations/{id}/pdf(id=${liquidation.id})}" class="btn btn-success" target="_blank" th:text="#{liquidation.show.download_pdf}">Descargar PDF</a>
+                        <a th:href="@{/liquidations}" class="btn btn-secondary" th:text="#{liquidation.show.back}">Volver</a>
                     </div>
                 </div>
                 <div class="col-md-4 d-flex align-items-center justify-content-center p-3">

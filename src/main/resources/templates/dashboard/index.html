@@ -16,35 +16,35 @@
     <div th:replace="~{fragments/header :: header}"></div>
 
     <div class="container mt-4">
-        <h2>User Online</h2>
+        <h2 th:text="#{dashboard.users.title}"></h2>
         <ul class="list-group">
             <li class="list-group-item" th:each="user : ${onlineUsers}" th:text="${user}"></li>
         </ul>
     </div>
 
     <div class="container mt-4">
-        <h2>Active Tournaments</h2>
+        <h2 th:text="#{dashboard.tournaments.title}"></h2>
         <ul class="list-group">
             <li class="list-group-item" th:each="tournament : ${tournaments}" th:text="${tournament.name}"></li>
         </ul>
     </div>
 
     <div class="container mt-4">
-        <h2>Future Games</h2>
+        <h2 th:text="#{dashboard.games.title}"></h2>
         <ul class="list-group">
             <li class="list-group-item" th:each="game : ${games}" th:text="${game.name}"></li>
         </ul>
     </div>
 
     <div class="container my-4">
-        <h4>Games Request</h4>
+        <h4 th:text="#{dashboard.requests.title}"></h4>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Referee</th>
-                    <th>Games</th>
-                    <th>State</th>
-                    <th>Date</th>
+                    <th th:text="#{dashboard.requests.header.referee}"></th>
+                    <th th:text="#{dashboard.requests.header.games}"></th>
+                    <th th:text="#{dashboard.requests.header.state}"></th>
+                    <th th:text="#{dashboard.requests.header.date}"></th>
                 </tr>
             </thead>
             <tbody>
@@ -52,9 +52,9 @@
                     <td th:text="${req.referee.name}"></td>
                     <td th:text="${req.game.name}"></td>
                     <td>
-                        <span class="badge bg-warning" th:if="${req.status == 'pendiente'}">Pending</span>
-                        <span class="badge bg-success" th:if="${req.status == 'aceptada'}">Accepted</span>
-                        <span class="badge bg-danger" th:if="${req.status == 'rechazada'}">rejected</span>
+                        <span class="badge bg-warning" th:if="${req.status == 'pendiente'}" th:text="#{game.status.pending}"></span>
+                        <span class="badge bg-success" th:if="${req.status == 'aceptada'}" th:text="#{game.status.accepted}"></span>
+                        <span class="badge bg-danger" th:if="${req.status == 'rechazada'}" th:text="#{game.status.reject}"></span>
                     </td>
                     <td th:text="${req.createdAt}"></td>
                 </tr>

@@ -17,40 +17,40 @@
     <div class="container mt-5">
         <div class="card shadow-lg rounded-3">
             <div class="card-header bg-primary text-white">
-                <h3 class="mb-0">Create New Referee</h3>
+                <h3 class="mb-0" th:text="#{referee.form.create_title}"></h3>
             </div>
             <div class="card-body">
                 <form th:action="@{/referees/create}" th:object="${referee}" method="post" enctype="multipart/form-data">
 
                     <div class="mb-3">
-                        <label class="form-label">Name</label>
-                        <input type="text" th:field="*{name}" class="form-control" placeholder="Enter referee name" required>
+                        <label class="form-label" th:text="#{referee.form.name}"></label>
+                        <input type="text" th:field="*{name}" class="form-control" th:placeholder="#{referee.form.name.placeholder}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Special</label>
-                        <input type="text" th:field="*{special}" class="form-control" placeholder="Enter specialization" required>
+                        <label class="form-label" th:text="#{referee.form.special}"></label>
+                        <input type="text" th:field="*{special}" class="form-control" th:placeholder="#{referee.form.special.placeholder}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">League</label>
-                        <input type="text" th:field="*{league}" class="form-control" placeholder="Enter league" required>
+                        <label class="form-label" th:text="#{referee.form.league}"></label>
+                        <input type="text" th:field="*{league}" class="form-control" th:placeholder="#{referee.form.league.placeholder}" required>
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Photo</label>
+                        <label class="form-label" th:text="#{referee.form.photo}"></label>
                         <input type="file" name="file" class="form-control" accept="image/*">
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Games</label>
+                        <label class="form-label" th:text="#{referee.form.games}"></label>
                         <select th:field="*{games}" multiple class="form-control">
-                            <option value="">None</option>
+                            <option value="" th:text="#{referee.form.games.none}"></option>
                             <option th:each="game : ${games}" th:value="${game.id}" th:text="${game.name}"></option>
                         </select>
                     </div>
 
-                    <button type="submit" class="btn btn-success">Save Referee</button>
+                    <button type="submit" class="btn btn-success" th:text="#{referee.button.save}"></button>
                 </form>
             </div>
         </div>
